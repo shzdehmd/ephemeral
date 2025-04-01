@@ -128,6 +128,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 -   GitHub Copilot was used to convert existing, non-AI code from a separate NodeJS backend project into web-specific functionality in the public/js/crypto file.
 -   Additionally, AI assisted in writing around 70% of the code comments across the application. All AI-generated comments were thoroughly proof-read and verified for accuracy.
+-   Furthermore, Google's Gemini Pro 2.5 (experimental) model was used to generate this README.md file. The file was proof-read and updated for accuracy.
 
 ## Author
 
