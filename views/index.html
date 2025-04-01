@@ -1,61 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Meta info and title -->
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Ephemeral - Private Note Sharing</title>
+        <!-- Main stylesheet -->
         <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
-        <!-- THE WRAPPER -->
         <div id="wrapper">
-            <!-- THE HEADER -->
+            <!-- Page Header -->
             <header>
                 <h1>
+                    <!-- Homepage Link -->
                     <a href="/">Ephemeral</a>
                 </h1>
                 <p>private note-sharing service</p>
             </header>
-            <!-- END HEADER -->
 
-            <!-- THE MAIN -->
+            <!-- Main Content Area -->
             <main>
-                <!-- THE FORM -->
+                <!-- Form for Creating a Note -->
                 <form action="/create" method="post" id="form">
                     <h4>Create Note</h4>
 
-                    <!-- THE MESSAGE -->
+                    <!-- Textarea for Note Content -->
                     <textarea name="message" id="message" placeholder="Type your note in here..." required></textarea>
-                    <!-- END MESSAGE -->
 
-                    <!-- THE OPTIONS -->
+                    <!-- Section: Note Type Options -->
                     <section id="options">
                         <p>
                             <b>Note Type</b>
                         </p>
-
+                        <!-- One-time View Option -->
                         <label for="option-onetime" title="The note will expire after it is viewed for the first time.">
                             <input type="radio" name="type" id="option-onetime" value="onetime" checked /> One-time View
                         </label>
-                        <label
-                            for="option-timebased"
-                            title="The note will expire after a certain amount of time you can choose.">
+                        <!-- Time-based Expiry Option -->
+                        <label for="option-timebased" title="The note will expire after a specified time.">
                             <input type="radio" name="type" id="option-timebased" value="timebased" /> Time-based Expiry
                         </label>
                     </section>
-                    <!-- END OPTIONS -->
 
-                    <!-- THE EXPIRY DATE FIELD -->
+                    <!-- Input: Expiry Date and Time (Hidden by Default) -->
                     <input type="datetime-local" name="expiry" id="expiry" class="hidden" />
-                    <!-- END EXPIRY DATE FIELD -->
 
-                    <!-- THE PASSWORD -->
+                    <!-- Checkbox: Enable Password Protection -->
                     <label for="protected">
                         <input type="checkbox" name="protected" id="protected" /> Password Protect?
                     </label>
-                    <!-- END PASSWORD -->
 
-                    <!-- THE PASSWORD FIELDS -->
+                    <!-- Section: Password Fields (Hidden by Default) -->
                     <section id="passwords" class="hidden">
                         <input type="password" name="password" id="password" placeholder="Password" class="hidden" />
                         <input
@@ -65,40 +61,31 @@
                             placeholder="Confirm Password"
                             class="hidden" />
                     </section>
-                    <!-- END PASSWORD FIELDS -->
 
-                    <!-- THE SUBMIT -->
+                    <!-- Submit Button -->
                     <button type="submit">Create</button>
-                    <!-- END SUBMIT -->
                 </form>
-                <!-- END FORM -->
             </main>
-            <!-- END MAIN -->
 
-            <!-- THE FOOTER -->
+            <!-- Page Footer -->
             <footer>
                 <p>copyright (c) 2025 - <a href="https://shahzad.dev">ahmad shahzad</a></p>
             </footer>
-            <!-- END FOOTER -->
         </div>
-        <!-- END WRAPPER -->
 
-        <!-- THE MODAL -->
+        <!-- Modal: Note Created Notification -->
         <div id="modal-background" class="hidden"></div>
         <div id="modal" class="hidden">
             <h3>🎉 Note Created 🎉</h3>
             <a href="#" id="output-link"></a>
-            <br />
-            <br />
+            <br /><br />
             <button id="copy-link">Copy</button>
             <button id="modal-close" type="reset">Close</button>
         </div>
-        <!-- END MODAL -->
 
-        <!-- THE SCRIPT -->
+        <!-- JavaScript Files -->
         <script src="/js/crypto.js"></script>
         <script src="/js/index.js"></script>
         <script src="/js/formHandler.js"></script>
-        <!-- END SCRIPT -->
     </body>
 </html>

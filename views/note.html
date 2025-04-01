@@ -7,39 +7,43 @@
         <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
-        <!-- THE WRAPPER -->
+        <!-- Main Page Wrapper -->
         <div id="wrapper">
-            <!-- THE HEADER -->
+            <!-- Header Section -->
             <header>
                 <h1>
                     <a href="/">Ephemeral</a>
                 </h1>
-                <p>private note-sharing service</p>
+                <p>Private note-sharing service</p>
             </header>
-            <!-- END HEADER -->
+            <!-- End of Header Section -->
 
-            <!-- THE MAIN -->
+            <!-- Main Content Section -->
             <main>
                 <h4>Your Note!</h4>
                 {% if note.protected %}
-                <p id="note" class="note">note is encrypted.</p>
+                <p id="note" class="note">Note is encrypted.</p>
                 {% else %}
                 <p id="note" class="note">{{ note.message }}</p>
                 {% endif %}
             </main>
-            <!-- END MAIN -->
+            <!-- End of Main Content Section -->
 
-            <!-- THE FOOTER -->
+            <!-- Footer Section -->
             <footer>
-                <p>copyright (c) 2025 - <a href="https://shahzad.dev">ahmad shahzad</a></p>
+                <p>
+                    Copyright (c) 2025 -
+                    <a href="https://shahzad.dev">ahmad shahzad</a>
+                </p>
             </footer>
-            <!-- END FOOTER -->
+            <!-- End of Footer Section -->
         </div>
-        <!-- END WRAPPER -->
+        <!-- End of Main Page Wrapper -->
 
         {% if note.protected %}
-        <!-- THE MODAL -->
+        <!-- Modal Background Overlay -->
         <div id="modal-background" {% if note.protected === false %} class="hidden" {% endif %}></div>
+        <!-- Password Modal for Unlocking Note -->
         <div id="modal" {% if note.protected === false %} class="hidden" {% endif %}>
             <h3>🥷 Password 🥷</h3>
             <input type="password" name="password" id="password" placeholder="Password" />
@@ -48,12 +52,12 @@
             <button id="unlock">Unlock</button>
             <button id="modal-close" type="reset">Close</button>
         </div>
-        <!-- END MODAL -->
+        <!-- End of Password Modal -->
 
-        <!-- THE SCRIPT -->
+        <!-- External Scripts -->
         <script src="/js/crypto.js"></script>
         <script src="/js/noteHandler.js"></script>
-        <!-- END SCRIPT -->
+        <!-- End of External Scripts -->
         {% endif %}
     </body>
 </html>

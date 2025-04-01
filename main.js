@@ -84,19 +84,32 @@ app.post('/create', async (req, res) => {
     return res.status(201).json({ success: true, slug: createdNote.slug });
 });
 
+// Defines a route for viewing a note based on its slug.
 app.get('/view/:slug', async (req, res) => {
+    // Extract the slug from the request parameters.
     const slug = req.params.slug;
+
+    // Look up the note in the database using the provided slug.
     const note = await Note.findOne({ where: { slug } });
 
-    if (!note) return res.render('note.html', { note: { message: 'The note does not exist or has expired.' } });
+    // If the note doesn't exist, render the template with an error message.
+    if (!note)
+        return res.render('note.html', {
+            note: { message: 'The note does not exist or has expired.' },
+        });
 
+    // If it's a one-time note, delete it after retrieval.
     if (note.onetime) await Note.destroy({ where: { id: note.id } });
 
+    // If it's a time-based note that has expired, remove it and notify the user.
     if (note.onetime === false && new Date(note.expiry).getTime() < new Date().getTime()) {
         await Note.destroy({ where: { id: note.id } });
-        return res.render('note.html', { note: { message: 'The note does not exist or has expired.' } });
+        return res.render('note.html', {
+            note: { message: 'The note does not exist or has expired.' },
+        });
     }
 
+    // Render the note using the 'note.html' template.
     res.render('note.html', { note });
 });
 
