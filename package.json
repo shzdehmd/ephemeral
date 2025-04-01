@@ -22,7 +22,7 @@
     },
     "scripts": {
         "start": "node main.js",
-        "dev": "nodemon main.js"
+        "dev": "nodemon -e html,css,js,json main.js"
     },
     "version": "0.0.1"
 }

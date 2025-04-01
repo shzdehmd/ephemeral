@@ -7,6 +7,77 @@
         <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
-        <h1>Hello, ephemeral!</h1>
+        <!-- THE WRAPPER -->
+        <div id="wrapper">
+            <!-- THE HEADER -->
+            <header>
+                <h1>
+                    <a href="/">Ephemeral</a>
+                </h1>
+                <p>private note-sharing service</p>
+            </header>
+            <!-- END HEADER -->
+
+            <!-- THE MAIN -->
+            <main>
+                <!-- THE FORM -->
+                <form action="/create" method="post">
+                    <!-- THE MESSAGE -->
+                    <textarea name="message" id="message" placeholder="Type your note in here..."></textarea>
+                    <!-- END MESSAGE -->
+
+                    <!-- THE OPTIONS -->
+                    <section id="options">
+                        <p>
+                            <b>Note Type</b>
+                        </p>
+
+                        <label for="option-onetime" title="The note will expire after it is viewed for the first time.">
+                            <input type="radio" name="type" id="option-onetime" value="onetime" checked /> One-time View
+                        </label>
+                        <label
+                            for="option-timebased"
+                            title="The note will expire after a certain amount of time you can choose.">
+                            <input type="radio" name="type" id="option-timebased" value="timebased" /> Time-based Expiry
+                        </label>
+                    </section>
+                    <!-- END OPTIONS -->
+
+                    <!-- THE EXPIRY DATE FIELD -->
+                    <input type="datetime-local" name="expiry" id="expiry" />
+                    <!-- END EXPIRY DATE FIELD -->
+
+                    <!-- THE PASSWORD -->
+                    <label for="protected">
+                        <input type="checkbox" name="protected" id="protected" /> Password Protect?
+                    </label>
+                    <!-- END PASSWORD -->
+
+                    <!-- THE PASSWORD FIELDS -->
+                    <section id="passwords">
+                        <input type="password" name="password" id="password" placeholder="Password" />
+                        <input
+                            type="password"
+                            name="confirm-password"
+                            id="confirm-password"
+                            placeholder="Confirm Password" />
+                    </section>
+                    <!-- END PASSWORD FIELDS -->
+
+                    <!-- THE SUBMIT -->
+                    <button type="submit">Create</button>
+                    <!-- END SUBMIT -->
+                </form>
+                <!-- END FORM -->
+            </main>
+            <!-- END MAIN -->
+
+            <!-- THE FOOTER -->
+            <footer>
+                <p>copyright (c) 2025 - <a href="https://shahzad.dev">ahmad shahzad</a></p>
+            </footer>
+            <!-- END FOOTER -->
+        </div>
+        <!-- END WRAPPER -->
     </body>
 </html>
