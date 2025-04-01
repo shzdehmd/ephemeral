@@ -47,7 +47,35 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify(note),
         });
+        const data = await res.json();
 
-        console.log(res);
+        if (data.success) {
+            const link = `${window.location.href}view/${data.slug}`;
+            document.getElementById('output-link').innerText = link;
+            document.getElementById('output-link').setAttribute('href', link);
+            document.getElementById('modal-background').classList.remove('hidden');
+            document.getElementById('modal').classList.remove('hidden');
+        } else {
+            alert(data.error);
+        }
+    });
+
+    document.getElementById('modal-close').addEventListener('click', () => {
+        document.getElementById('output-link').innerText = '';
+        document.getElementById('output-link').setAttribute('href', '#');
+        document.getElementById('modal-background').classList.add('hidden');
+        document.getElementById('modal').classList.add('hidden');
+    });
+
+    document.getElementById('copy-link').addEventListener('click', () => {
+        const link = document.getElementById('output-link').getAttribute('href');
+        navigator.clipboard
+            .writeText(link)
+            .then(() => {
+                alert('Link copied to clipboard');
+            })
+            .catch(() => {
+                alert('Failed to copy link');
+            });
     });
 });
