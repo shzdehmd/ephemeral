@@ -124,6 +124,11 @@ _(Note: You might need to configure a `.env` file depending on how database path
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file (if present) or [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT) for details.
 
+## AI Usage
+
+-   GitHub Copilot was used to convert existing, non-AI code from a separate NodeJS backend project into web-specific functionality in the public/js/crypto file.
+-   Additionally, AI assisted in writing around 70% of the code comments across the application. All AI-generated comments were thoroughly proof-read and verified for accuracy.
+
 ## Author
 
 -   **Ahmad Shahzad** - [shahzad.dev](https://shahzad.dev)
