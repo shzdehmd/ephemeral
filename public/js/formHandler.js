@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             message: encrypted ? encryptedMessage : message,
             type,
             expiry,
-            iv,
+            iv: JSON.stringify(iv),
             encrypted,
         };
 

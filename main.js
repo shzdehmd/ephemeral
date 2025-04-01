@@ -3,6 +3,7 @@ require('dotenv').config();
 
 // Import the NPM modules needed for the application.
 const express = require('express');
+const shortid = require('shortid');
 const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser');
 
@@ -17,6 +18,8 @@ const HOST = process.env.HOST || 'localhost';
 const { error404 } = require('./utils/middlewares');
 
 // Import the Note Model.
+const Note = require('./models/Note');
+Note.sync();
 
 // Configure nunjucks as the templating engine with its templates stored
 // in the views folder.
@@ -38,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', (req, res) => res.render('index.html'));
 
 // Get the note data from form post submit.
-app.post('/create', (req, res) => {
+app.post('/create', async (req, res) => {
     console.log(req.body);
 
     const { message, type, expiry, iv, encrypted } = req.body;
@@ -60,7 +63,19 @@ app.post('/create', (req, res) => {
             error: 'Please provide an IV value for encrypted notes.',
         });
 
-    return res.status(201).json({ success: true });
+    const note = new Note({
+        slug: shortid.generate(),
+        message,
+        onetime: type === 'onetime' ? true : false,
+        expiry: type === 'timebased' ? new Date(expiry) : null,
+        views: 0,
+        protected: encrypted,
+        iv: encrypted ? iv : null,
+    });
+
+    const createdNote = await note.save();
+
+    return res.status(201).json({ success: true, slug: createdNote.slug });
 });
 
 // Use error404 as the final route handler if no other route satisfies the request.

@@ -43,7 +43,7 @@ const Note = sequelize.define('Note', {
     },
     iv: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         require: true,
     },
 });
