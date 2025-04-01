@@ -47,3 +47,13 @@ const decrypt = async (encryptedHex, password, iv) => {
     const decryptedBuffer = await crypto.subtle.decrypt({ name: algo, iv }, key, encryptedBuffer);
     return new TextDecoder().decode(decryptedBuffer);
 };
+
+// Convert an IV (Uint8Array) to a hex string suitable for storing in a database
+const ivToDatabase = (iv) => {
+    return bufferToHex(iv);
+};
+
+// Convert a hex string from the database back into a Uint8Array suitable for the decrypt function
+const databaseToIv = (hexString) => {
+    return hexToBuffer(hexString);
+};

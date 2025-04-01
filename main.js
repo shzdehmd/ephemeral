@@ -84,6 +84,17 @@ app.post('/create', async (req, res) => {
     return res.status(201).json({ success: true, slug: createdNote.slug });
 });
 
+app.get('/view/:slug', async (req, res) => {
+    const slug = req.params.slug;
+    const note = await Note.findOne({ where: { slug } });
+
+    if (!note) return res.render('note.html', { note: { message: 'The note does not exist or has expired.' } });
+
+    if (note.onetime) await Note.destroy({ where: { id: note.id } });
+
+    res.render('note.html', { note });
+});
+
 // Use error404 as the final route handler if no other route satisfies the request.
 app.use(error404);
 

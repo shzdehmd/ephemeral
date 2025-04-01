@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ephemeral - Private Note Sharing</title>
+        <link rel="stylesheet" href="/css/styles.css" />
+    </head>
+    <body>
+        <!-- THE WRAPPER -->
+        <div id="wrapper">
+            <!-- THE HEADER -->
+            <header>
+                <h1>
+                    <a href="/">Ephemeral</a>
+                </h1>
+                <p>private note-sharing service</p>
+            </header>
+            <!-- END HEADER -->
+
+            <!-- THE MAIN -->
+            <main>
+                <h4>Your Note!</h4>
+                {% if note.protected %}
+                <p id="note" class="note">note is encrypted.</p>
+                {% else %}
+                <p id="note" class="note">{{ note.message }}</p>
+                {% endif %}
+            </main>
+            <!-- END MAIN -->
+
+            <!-- THE FOOTER -->
+            <footer>
+                <p>copyright (c) 2025 - <a href="https://shahzad.dev">ahmad shahzad</a></p>
+            </footer>
+            <!-- END FOOTER -->
+        </div>
+        <!-- END WRAPPER -->
+
+        {% if note.protected %}
+        <!-- THE MODAL -->
+        <div id="modal-background" {% if note.protected === false %} class="hidden" {% endif %}></div>
+        <div id="modal" {% if note.protected === false %} class="hidden" {% endif %}>
+            <h3>🥷 Password 🥷</h3>
+            <input type="password" name="password" id="password" placeholder="Password" />
+            <input type="hidden" name="iv" id="iv" value="{{ note.iv }}">
+            <input type="hidden" name="message" id="message" value="{{ note.message }}">
+            <button id="unlock">Unlock</button>
+            <button id="modal-close" type="reset">Close</button>
+        </div>
+        <!-- END MODAL -->
+
+        <!-- THE SCRIPT -->
+        <script src="/js/crypto.js"></script>
+        <script src="/js/noteHandler.js"></script>
+        <!-- END SCRIPT -->
+        {% endif %}
+    </body>
+</html>
