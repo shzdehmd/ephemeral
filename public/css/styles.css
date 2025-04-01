@@ -13,6 +13,25 @@ footer {
     text-align: center;
 }
 
+header,
+main,
+footer {
+    border: 2px solid #969eaf;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 5px;
+}
+
+header {
+    margin-top: 0;
+}
+
+footer,
+footer p,
+header p {
+    margin-bottom: 0;
+}
+
 header h1 a {
     text-decoration: none;
     text-transform: lowercase;
@@ -20,4 +39,12 @@ header h1 a {
 
 main form textarea {
     height: 150px;
+}
+
+.hidden {
+    display: none;
+}
+
+h4 {
+    text-align: center;
 }

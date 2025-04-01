@@ -22,8 +22,10 @@
             <main>
                 <!-- THE FORM -->
                 <form action="/create" method="post">
+                    <h4>Create Note</h4>
+
                     <!-- THE MESSAGE -->
-                    <textarea name="message" id="message" placeholder="Type your note in here..."></textarea>
+                    <textarea name="message" id="message" placeholder="Type your note in here..." required></textarea>
                     <!-- END MESSAGE -->
 
                     <!-- THE OPTIONS -->
@@ -44,7 +46,7 @@
                     <!-- END OPTIONS -->
 
                     <!-- THE EXPIRY DATE FIELD -->
-                    <input type="datetime-local" name="expiry" id="expiry" />
+                    <input type="datetime-local" name="expiry" id="expiry" class="hidden" />
                     <!-- END EXPIRY DATE FIELD -->
 
                     <!-- THE PASSWORD -->
@@ -54,13 +56,14 @@
                     <!-- END PASSWORD -->
 
                     <!-- THE PASSWORD FIELDS -->
-                    <section id="passwords">
-                        <input type="password" name="password" id="password" placeholder="Password" />
+                    <section id="passwords" class="hidden">
+                        <input type="password" name="password" id="password" placeholder="Password" class="hidden" />
                         <input
                             type="password"
                             name="confirm-password"
                             id="confirm-password"
-                            placeholder="Confirm Password" />
+                            placeholder="Confirm Password"
+                            class="hidden" />
                     </section>
                     <!-- END PASSWORD FIELDS -->
 
@@ -79,5 +82,9 @@
             <!-- END FOOTER -->
         </div>
         <!-- END WRAPPER -->
+
+        <!-- THE SCRIPT -->
+        <script src="/js/index.js"></script>
+        <!-- END SCRIPT -->
     </body>
 </html>
