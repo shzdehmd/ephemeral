@@ -92,6 +92,11 @@ app.get('/view/:slug', async (req, res) => {
 
     if (note.onetime) await Note.destroy({ where: { id: note.id } });
 
+    if (note.onetime === false && new Date(note.expiry).getTime() < new Date().getTime()) {
+        await Note.destroy({ where: { id: note.id } });
+        return res.render('note.html', { note: { message: 'The note does not exist or has expired.' } });
+    }
+
     res.render('note.html', { note });
 });
 
