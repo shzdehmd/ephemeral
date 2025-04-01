@@ -42,39 +42,45 @@ app.get('/', (req, res) => res.render('index.html'));
 
 // Get the note data from form post submit.
 app.post('/create', async (req, res) => {
-    console.log(req.body);
-
+    // Extract note details from the request body.
     const { message, type, expiry, iv, encrypted } = req.body;
 
+    // Check if a non-empty note message is provided.
     if (!message) return res.status(400).json({ error: 'You cannot provide an empty note.' });
 
+    // Validate that the note type is either "onetime" or "timebased".
     if (!['onetime', 'timebased'].includes(type))
         return res.status(400).json({
             error: 'You provided an invalid type for the note. It can only be one of the following: onetime OR timebased.',
         });
 
+    // For timebased notes, ensure an expiry date and time are provided.
     if (type === 'timebased' && !expiry)
         return res.status(400).json({
             error: 'Please provide an expiry date and time for timebased notes.',
         });
 
+    // For encrypted notes, verify that an initialization vector (IV) is provided.
     if (encrypted && !iv)
         return res.status(400).json({
             error: 'Please provide an IV value for encrypted notes.',
         });
 
+    // Create a new Note instance with the provided details.
     const note = new Note({
-        slug: shortid.generate(),
-        message,
-        onetime: type === 'onetime' ? true : false,
-        expiry: type === 'timebased' ? new Date(expiry) : null,
-        views: 0,
-        protected: encrypted,
-        iv: encrypted ? iv : null,
+        slug: shortid.generate(), // Generate a unique slug identifier.
+        message, // Store the note message.
+        onetime: type === 'onetime', // Flag note as onetime if applicable.
+        expiry: type === 'timebased' ? new Date(expiry) : null, // Set expiry for timebased notes.
+        views: 0, // Initialize views count to 0.
+        protected: encrypted, // Mark note as encrypted if needed.
+        iv: encrypted ? iv : null, // Include IV only if the note is encrypted.
     });
 
+    // Save the new note to the database.
     const createdNote = await note.save();
 
+    // Respond with a success status and the generated note slug.
     return res.status(201).json({ success: true, slug: createdNote.slug });
 });
 
