@@ -1,6 +1,8 @@
+/* Import CSS reset and Pico CSS framework */
 @import url('/css/reset.css');
 @import url('https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css');
 
+/* Wrapper styles to center everything on the page */
 #wrapper {
     width: 100%;
     max-width: 450px;
@@ -8,11 +10,13 @@
     margin: 0 auto;
 }
 
+/* Center header and footer text */
 header,
 footer {
     text-align: center;
 }
 
+/* Apply same border, padding, margin, and border-radius to header, main, and footer */
 header,
 main,
 footer {
@@ -22,29 +26,35 @@ footer {
     border-radius: 5px;
 }
 
+/* Remove extra top margin for header */
 header {
     margin-top: 0;
 }
 
+/* Remove bottom margin footer and paragraphs in header and footer */
 footer,
 footer p,
 header p {
     margin-bottom: 0;
 }
 
+/* Style the logo link */
 header h1 a {
     text-decoration: none;
     text-transform: lowercase;
 }
 
+/* Set height for textarea */
 main form textarea {
     height: 150px;
 }
 
+/* Class to hide stuff */
 .hidden {
     display: none;
 }
 
+/* Center the h4 heading */
 h4 {
     text-align: center;
 }
