@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('modal').classList.add('hidden');
         } catch (err) {
             // Log any errors that occur during decryption.
-            console.log(err);
+            alert(err);
         }
     });
 });

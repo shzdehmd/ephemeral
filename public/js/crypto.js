@@ -57,3 +57,41 @@ const ivToDatabase = (iv) => {
 const databaseToIv = (hexString) => {
     return hexToBuffer(hexString);
 };
+
+// The code above was generated using GitHub Copilot from the below code which I had previously written
+// for a different application to be used on the backend in NodeJS. THE BELOW CODE WAS NOT AI GENERATED.
+
+// const crypto = require('node:crypto');
+
+// const { CRYPTO_KEY } = require('./config');
+
+// const algo = 'aes-256-cbc';
+
+// const genIV = () => {
+//     const iv = crypto.randomBytes(16);
+//     return iv;
+// };
+
+// const encrypt = (decrypted, iv) => {
+//     const key = crypto.createHash('sha256').update(String(CRYPTO_KEY)).digest('base64').substr(0, 32);
+
+//     const cipher = crypto.createCipheriv(algo, key, iv);
+//     const encrypted = cipher.update(decrypted, 'utf8', 'hex') + cipher.final('hex');
+
+//     return encrypted;
+// };
+
+// const decrypt = (encrypted, iv) => {
+//     const key = crypto.createHash('sha256').update(String(CRYPTO_KEY)).digest('base64').substr(0, 32);
+
+//     const decipher = crypto.createDecipheriv(algo, key, iv);
+//     const decrypted = decipher.update(encrypted, 'hex', 'utf8') + decipher.final('utf8');
+
+//     return decrypted;
+// };
+
+// module.exports = {
+//     genIV,
+//     encrypt,
+//     decrypt,
+// };
