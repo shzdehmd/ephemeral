@@ -1,0 +1,21 @@
+{
+    "author": {
+        "name": "Ahmad Shahzad",
+        "url": "https://shahzad.dev"
+    },
+    "dependencies": {},
+    "description": "Ephemeral is a note-sharing service with the ability to delete notes after one-off views, password-protected notes, and notes that expire after a certain time.",
+    "devDependencies": {},
+    "homepage": "https://ephemeral.shahzad.dev",
+    "license": "MIT",
+    "name": "ephemeral",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/shzdehmd/ephemeral"
+    },
+    "scripts": {
+        "start": "node main.js"
+    },
+    "version": "0.0.1"
+}
