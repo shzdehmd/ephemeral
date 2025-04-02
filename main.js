@@ -116,7 +116,7 @@ app.get('/view/:slug', async (req, res) => {
     await note.save();
 
     // Render the note using the 'note.html' template.
-    res.render('note.html', { note, views: note.views + 1 });
+    res.render('note.html', { note, views: note.views });
 });
 
 // Use error404 as the final route handler if no other route satisfies the request.
