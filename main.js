@@ -80,14 +80,14 @@ app.post('/create', async (req, res) => {
     // Save the new note to the database.
     const createdNote = await note.save();
 
-    console.log(createdNote);
-
     // Respond with a success status and the generated note slug.
     return res.status(201).json({ success: true, slug: createdNote.slug });
 });
 
 // Defines a route for viewing a note based on its slug.
 app.get('/view/:slug', async (req, res) => {
+    // THE CODE FOR BLOCKING SOCIAL MEDIA BOTS WAS AI-GENERATED
+    // USING CHATGPT.
     const userAgent = req.headers['user-agent'] || '';
 
     // List of known social media bots
@@ -97,13 +97,14 @@ app.get('/view/:slug', async (req, res) => {
         /LinkedInBot/i, // LinkedIn bot
         /WhatsApp/i, // WhatsApp preview
         /TelegramBot/i, // Telegram bot
-        /Discordbot/i, // Discord bot
+        /Discordbot/i, // Discord bot // THIS LINE IS NOT AI GENERATED
     ];
 
     // Check if User-Agent matches known social media bots
     if (socialMediaPatterns.some((pattern) => pattern.test(userAgent))) {
-        return res.status(401).end();
+        return res.status(401).end(); // THIS LINE IS NOT AI GENERATED
     }
+    // AI-GENERATED CODE ENDS HERE
 
     // Extract the slug from the request parameters.
     const slug = req.params.slug;
