@@ -1,5 +1,11 @@
 # Ephemeral
 
+#### Video Demo: https://www.youtube.com/watch?v=2rjtBm-9nK8
+
+#### Live Link: https://ephemeral.shahzad.dev
+
+#### Description:
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](package.json)
 
