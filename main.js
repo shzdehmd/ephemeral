@@ -49,7 +49,7 @@ app.post('/create', async (req, res) => {
     if (!message) return res.status(400).json({ error: 'You cannot provide an empty note.' });
 
     // Validate that the note type is either "onetime" or "timebased".
-    if (!['onetime', 'timebased'].includes(type))
+    if (!['onetime', 'timebased', 'permanent'].includes(type))
         return res.status(400).json({
             error: 'You provided an invalid type for the note. It can only be one of the following: onetime OR timebased.',
         });
@@ -80,6 +80,8 @@ app.post('/create', async (req, res) => {
     // Save the new note to the database.
     const createdNote = await note.save();
 
+    console.log(createdNote);
+
     // Respond with a success status and the generated note slug.
     return res.status(201).json({ success: true, slug: createdNote.slug });
 });
@@ -102,15 +104,19 @@ app.get('/view/:slug', async (req, res) => {
     if (note.onetime) await Note.destroy({ where: { id: note.id } });
 
     // If it's a time-based note that has expired, remove it and notify the user.
-    if (note.onetime === false && new Date(note.expiry).getTime() < new Date().getTime()) {
+    if (note.onetime === false && note.expiry !== null && new Date(note.expiry).getTime() < new Date().getTime()) {
         await Note.destroy({ where: { id: note.id } });
         return res.render('note.html', {
             note: { message: 'The note does not exist or has expired.' },
         });
     }
 
+    // Update note view count
+    note.views++;
+    await note.save();
+
     // Render the note using the 'note.html' template.
-    res.render('note.html', { note });
+    res.render('note.html', { note, views: note.views + 1 });
 });
 
 // Use error404 as the final route handler if no other route satisfies the request.

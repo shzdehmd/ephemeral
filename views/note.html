@@ -19,12 +19,14 @@
             <!-- End of Header Section -->
 
             <!-- Main Content Section -->
-            <main>
-                <h4>Your Note!</h4>
+            <main class="note-main">
                 {% if note.protected %}
                 <p id="note" class="note">Note is encrypted.</p>
                 {% else %}
                 <p id="note" class="note">{{ note.message }}</p>
+                {% endif %}
+                {% if views %}
+                <p class="views">Views: {{ views }} 🎉</p>
                 {% endif %}
             </main>
             <!-- End of Main Content Section -->

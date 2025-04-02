@@ -34,8 +34,11 @@
                             <b>Note Type</b>
                         </p>
                         <!-- One-time View Option -->
+                        <label for="option-permanent" title="The note is stored forever.">
+                            <input type="radio" name="type" id="option-permanent" value="permanent" checked /> Permanent
+                        </label>
                         <label for="option-onetime" title="The note will expire after it is viewed for the first time.">
-                            <input type="radio" name="type" id="option-onetime" value="onetime" checked /> One-time View
+                            <input type="radio" name="type" id="option-onetime" value="onetime" /> One-time View
                         </label>
                         <!-- Time-based Expiry Option -->
                         <label for="option-timebased" title="The note will expire after a specified time.">

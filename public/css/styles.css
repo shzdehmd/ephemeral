@@ -86,6 +86,14 @@ h4 {
 
 .note {
     text-align: center;
-    margin-bottom: 0;
     white-space: pre-wrap;
+}
+
+.views {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.note-main {
+    border-color: greenyellow;
 }

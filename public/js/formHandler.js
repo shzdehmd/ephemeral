@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!message || message === '') return alert('The note cannot be empty.');
 
         // Validate the note type
-        if (!['onetime', 'timebased'].includes(type))
+        if (!['onetime', 'timebased', 'permanent'].includes(type))
             return alert(
                 'The type of your note is incorrect.\n\nIt can only be one of the following:\n- onetime\n- timebased',
             );
