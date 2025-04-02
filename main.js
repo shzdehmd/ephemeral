@@ -88,6 +88,23 @@ app.post('/create', async (req, res) => {
 
 // Defines a route for viewing a note based on its slug.
 app.get('/view/:slug', async (req, res) => {
+    const userAgent = req.headers['user-agent'] || '';
+
+    // List of known social media bots & referrers
+    const socialMediaPatterns = [
+        /facebookexternalhit/i, // Facebook crawler
+        /Twitterbot/i, // Twitter bot
+        /LinkedInBot/i, // LinkedIn bot
+        /WhatsApp/i, // WhatsApp preview
+        /TelegramBot/i, // Telegram bot
+        /Discordbot/i, // Discord bot
+    ];
+
+    // Check if User-Agent matches known social media bots
+    if (socialMediaPatterns.some((pattern) => pattern.test(userAgent))) {
+        return res.status(401).end();
+    }
+
     // Extract the slug from the request parameters.
     const slug = req.params.slug;
 
