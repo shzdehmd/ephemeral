@@ -14,7 +14,7 @@ Ephemeral is a private note-sharing service built with Node.js, Express, Sequeli
 Ephemeral supports creating notes with the following characteristics:
 
 -   **Standard Notes:** Simple text notes shareable via a unique link.
--   **One-Time View Notes:** Notes that are intended to be deleted or become inaccessible after being viewed once.
+-   **One-Time View Notes:** Notes that are intended to be deleted after being viewed once.
 -   **Time-Based Expiry Notes:** Notes that expire after a user-specified date and time.
 -   **Password-Protected Notes:** Notes can be protected with a password.
     -   **Client-side encryption/decryption** is used for these notes. The note content is stored encrypted in the database, along with an initialization vector (IV). No passwords or unencrypted note content is ever sent to the backend.

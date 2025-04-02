@@ -90,7 +90,7 @@ app.post('/create', async (req, res) => {
 app.get('/view/:slug', async (req, res) => {
     const userAgent = req.headers['user-agent'] || '';
 
-    // List of known social media bots & referrers
+    // List of known social media bots
     const socialMediaPatterns = [
         /facebookexternalhit/i, // Facebook crawler
         /Twitterbot/i, // Twitter bot
