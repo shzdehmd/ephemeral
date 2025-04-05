@@ -117,6 +117,7 @@ app.get('/view/:slug', async (req, res) => {
     if (!note)
         return res.render('note.html', {
             note: { message: 'The note does not exist or has expired.' },
+            url: URL,
         });
 
     // If it's a one-time note, delete it after retrieval.
@@ -127,6 +128,7 @@ app.get('/view/:slug', async (req, res) => {
         await Note.destroy({ where: { id: note.id } });
         return res.render('note.html', {
             note: { message: 'The note does not exist or has expired.' },
+            url: URL,
         });
     }
 
