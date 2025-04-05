@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Privacy Policy | Ephemeral</title>
+        <link rel="stylesheet" href="/style.css" />
+        <!-- Link to Landing Page CSS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+        <!-- Add Favicon links here -->
+        <meta
+            name="description"
+            content="Ephemeral Privacy Policy detailing our commitment to user privacy, data collection (and lack thereof), and security practices." />
+        <meta name="robots" content="index, follow" />
+    </head>
+    <body class="dark-theme">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <header class="site-header glass-nav">
+            <div class="container">
+                <nav class="main-nav">
+                    <a href="/" class="logo">Ephemeral</a>
+                    <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <ul class="nav-links">
+                        <li><a href="/#features">Features</a></li>
+                        <li><a href="/security-details">Security</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/app" class="nav-button primary">Create Note</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="privacy-policy-main">
+            <!-- Added class for potential CSS targeting -->
+            <div class="container section-padding">
+                <h2 class="section-title">Privacy Policy</h2>
+
+                <div class="content-card glass-card">
+                    <p><i>Last Updated: April 05, 2025</i></p>
+
+                    <p>
+                        Welcome to Ephemeral ("us", "we", or "our"). We are committed to protecting your privacy. This
+                        Privacy Policy explains our practices regarding the collection, use, and disclosure of
+                        information when you use our note-sharing service (the "Service"). By using the Service, you
+                        agree to the collection and use of information in accordance with this policy.
+                    </p>
+
+                    <h3 class="content-heading">1. Information We Do <u>Not</u> Collect</h3>
+                    <p>
+                        Our core principle is minimal data collection. We have designed Ephemeral specifically to avoid
+                        collecting personal information:
+                    </p>
+                    <ul>
+                        <li>
+                            <b>No User Accounts:</b> We do not require you to create an account, provide an email
+                            address, or any other registration information to use the core Service.
+                        </li>
+                        <li>
+                            <b>No Personal Identifiers:</b> We do <b>not</b> collect or store Personally Identifiable
+                            Information (PII) such as your name, address, phone number, IP address, precise location, or
+                            browser/device fingerprints in relation to your use of the note creation or viewing service.
+                        </li>
+                        <li>
+                            <b>No Logs:</b> We maintain a strict <b>no-logs policy</b> regarding user activity. We do
+                            not keep access logs, usage logs, error logs, or any records that could link your identity
+                            or IP address to the creation or viewing of specific notes.
+                        </li>
+                        <li>
+                            <b>No Author Information:</b> We do not store any information linking a created note back to
+                            its author.
+                        </li>
+                    </ul>
+
+                    <h3 class="content-heading">2. Information We <u>Do</u> Collect</h3>
+                    <p>To provide the Service, we need to store the note itself and some functional metadata:</p>
+                    <ul>
+                        <li>
+                            <b>Note Content (Conditional):</b>
+                            <ul>
+                                <li>
+                                    For <b>password-protected notes</b>, we store the
+                                    <b>encrypted content</b> (ciphertext) generated in your browser. We cannot read this
+                                    content.
+                                </li>
+                                <li>
+                                    For <b>unprotected notes</b>, we store the <b>plaintext content</b> as entered by
+                                    you.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>Initialization Vector (IV):</b> For password-protected notes only, we store the unique,
+                            randomly generated IV that is required (along with your password) to decrypt the note
+                            content. The IV itself does not reveal the password or the content.
+                        </li>
+                        <li>
+                            <b>Note Metadata:</b> We store essential, non-personal metadata for each note, including a
+                            unique identifier, its creation time, the chosen lifespan rule (e.g., 'onetime', expiry
+                            date/time, 'permanent'), and a flag indicating if it was password-protected.
+                        </li>
+                    </ul>
+
+                    <h3 class="content-heading">3. How We Use Information</h3>
+                    <p>The limited information we collect is used solely for the following purposes:</p>
+                    <ul>
+                        <li>
+                            <b>To Provide and Maintain the Service:</b> Storing the note content (encrypted or
+                            plaintext) and metadata allows us to display the note to someone with the correct link and
+                            enforce its lifespan rules.
+                        </li>
+                        <li>
+                            <b>To Enforce Note Lifespan:</b> We use the metadata to automatically delete notes according
+                            to the rules you set (one-time view or time-based expiry).
+                        </li>
+                    </ul>
+                    <p>
+                        We do not use the collected information for advertising, analytics, profiling, or any other
+                        purpose.
+                    </p>
+
+                    <h3 class="content-heading">4. Data Storage & Security</h3>
+                    <ul>
+                        <li>
+                            <b>Storage Location:</b> Note data (encrypted or plaintext, IVs, metadata) is stored on
+                            secure servers.
+                        </li>
+                        <li>
+                            <b>Security Measures:</b> We implement standard technical and organizational security
+                            measures to protect the infrastructure and the stored data from unauthorized access,
+                            disclosure, alteration, or destruction. All communication with our servers uses TLS/SSL
+                            (HTTPS) encryption.
+                        </li>
+                        <li>
+                            <b>Encryption (Password-Protected Notes):</b> As detailed in our
+                            <a href="/security-details.html">Security Details</a>, password-protected notes use strong
+                            client-side AES-CBC encryption. Only someone with the correct link and the correct password
+                            can decrypt the content. We cannot.
+                        </li>
+                        <li>
+                            <b>Plaintext (Unprotected Notes):</b> Unprotected note content is stored as plaintext and
+                            does not have the same level of confidentiality as password-protected notes.
+                        </li>
+                    </ul>
+
+                    <h3 class="content-heading">5. Data Retention & Deletion</h3>
+                    <ul>
+                        <li>
+                            <b>Automatic Deletion:</b> Notes set as 'one-time view' or with a specific 'time-based
+                            expiry' are automatically and permanently deleted from our active systems once their
+                            condition is met.
+                        </li>
+                        <li>
+                            <b>Permanent Notes:</b> Notes set as 'permanent' are stored indefinitely on our servers
+                            unless or until the underlying server infrastructure is decommissioned. No author
+                            information is tied to these notes.
+                        </li>
+                        <li>
+                            <b>No Recovery:</b> Once a note is deleted according to its rules, it cannot be recovered.
+                        </li>
+                    </ul>
+
+                    <h3 class="content-heading">6. Third-Party Services</h3>
+                    <p>
+                        We do <b>not</b> use third-party analytics, advertising networks, or tracking services within
+                        the core note creation and viewing functionality of Ephemeral.
+                    </p>
+
+                    <h3 class="content-heading">7. Children's Privacy</h3>
+                    <p>
+                        Our Service is not intended for use by children under the age of 13 (or the relevant age of
+                        consent in your jurisdiction). We do not knowingly collect any personally identifiable
+                        information from children.
+                    </p>
+
+                    <h3 class="content-heading">8. Changes to This Privacy Policy</h3>
+                    <p>
+                        We may update our Privacy Policy from time to time. We will notify you of any changes by posting
+                        the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically
+                        for any changes. Changes are effective when they are posted on this page.
+                    </p>
+
+                    <h3 class="content-heading">9. Contact Us</h3>
+                    <p>
+                        If you have any questions about this Privacy Policy, please
+                        <a href="/contact-us">contact us</a>.
+                    </p>
+                </div>
+                <!-- End content-card -->
+            </div>
+            <!-- End container -->
+        </main>
+
+        <footer class="site-footer-bottom">
+            <div class="container">
+                <p>© 2025 Ephemeral. Privacy Focused.</p>
+                <ul>
+                    <li><a href="/privacy-policy">Privacy</a></li>
+                    <li><a href="/terms-of-service">Terms of Service</a></li>
+                    <li><a href="/security-details.html">Security</a></li>
+                    <li><a href="/contact-us">Contact</a></li>
+                </ul>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>

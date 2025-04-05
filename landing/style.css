@@ -659,3 +659,338 @@ img {
         display: none;
     } /* Hide complex shapes on small mobile maybe */
 }
+
+/* styles.css */
+
+/* --- Keep ALL existing styles from the previous dark/glass/modern version --- */
+/* Including: */
+/* - :root variables (dark theme colors, fonts, etc.) */
+/* - Abstract Background Shapes styles */
+/* - Base styles (body, container, headings, links, etc.) */
+/* - Glassmorphism styles */
+/* - Button styles (.cta-button, .nav-button) */
+/* - Header & Desktop Navigation styles */
+/* - Hero Section styles */
+/* - Features Section styles (.features-grid, .feature-item, .feature-icon) */
+/* - How It Works Section styles (.steps-container, .step-item, .step-icon) */
+/* - Security Section styles */
+/* - Final CTA Section styles */
+/* - Footer styles */
+/* - Animation styles (.animate-on-scroll) */
+/* - Responsive styles for Tablets (@media (max-width: 992px)) */
+
+/* --- MODIFICATION: Mobile Navigation Styles --- */
+@media (max-width: 768px) {
+    /* ... (keep other mobile styles like html scroll-padding, font sizes) ... */
+
+    /* Mobile Nav Menu Styles */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 280px; /* Or your preferred width */
+
+        /* --- BACKGROUND FIX --- */
+        /* Use a near-solid background from your theme */
+        /* Option 1: Use a secondary dark color */
+        /* background-color: var(--bg-secondary-color); */
+
+        /* Option 2: Use a much less transparent glass effect */
+        background-color: rgba(26, 26, 46, 0.95); /* Dark bg with high opacity */
+        backdrop-filter: blur(15px); /* Keep blur for effect */
+        -webkit-backdrop-filter: blur(15px);
+        /* --- END BACKGROUND FIX --- */
+
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px 30px 30px;
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+        z-index: 1000;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+        overflow-y: auto; /* Add scroll if many links */
+    }
+    .nav-links.active {
+        transform: translateX(0);
+    }
+    .nav-links li {
+        margin: 0 0 20px 0;
+        width: 100%;
+    }
+    .nav-links a {
+        display: block;
+        padding: 10px 0;
+        font-size: 1.1rem;
+    }
+    .nav-links a:not(.nav-button)::after {
+        display: none;
+    }
+    .nav-button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        text-align: center;
+    }
+    .nav-button.secondary {
+        margin-right: 0;
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+        z-index: 1001; /* Ensure toggle is above menu */
+    }
+    .mobile-nav-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .mobile-nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .mobile-nav-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* ... (keep other mobile styles like .features-grid stacking, footer centering) ... */
+
+    /* Ensure background shapes don't interfere visually */
+    .shape {
+        opacity: 0.2;
+        filter: blur(80px);
+    } /* Further reduce opacity/blur on mobile maybe */
+}
+
+/* --- Ensure Icon Styles are Present (if updated) --- */
+.feature-icon {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    line-height: 1;
+    /* Add any specific icon styling here if needed */
+}
+
+/* --- Ensure Security Icon Large is styled --- */
+.security-icon-large {
+    font-size: 4rem;
+    margin-bottom: 25px;
+    color: var(--secondary-accent); /* Or your preferred security color */
+    display: inline-block;
+}
+
+/* ========================================== */
+/* == ADD THESE STYLES TO style.css == */
+/* ========================================== */
+
+/* --- Layout for Pages using Header/Footer/Main --- */
+
+/* Ensure body allows main content to grow if using flex */
+/* If your body already has display:flex and flex-direction:column, this is good */
+/* body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+} */
+
+/* CRITICAL: Ensure the main content area can grow */
+/* Target the main element specifically on this page, or apply flex-grow: 1; more broadly if appropriate */
+main.security-details-main {
+    flex-grow: 1; /* Allows main to take up space between header and footer */
+    width: 100%; /* Ensure it takes full width */
+    display: block; /* Explicitly set display */
+}
+
+/* --- Styling for Security Details Page Content --- */
+
+/* Style for the card holding the text content */
+.content-card {
+    background-color: var(--card-bg, var(--glass-bg, #1e1e1e)); /* Use existing card/glass variables */
+    border-radius: var(--border-radius, 12px);
+    padding: 35px 40px; /* Adjust padding as needed */
+    margin-top: 40px; /* Space below page title */
+    border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+    box-shadow: var(--card-shadow, 0 8px 32px rgba(0, 0, 0, 0.2)); /* Use existing shadow */
+    color: var(--text-color); /* Ensure text color contrasts with card */
+    z-index: 1000;
+}
+
+/* Headings within the content card */
+.content-card .content-heading {
+    font-size: 1.5rem; /* Adjust size as needed */
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-top: 2.5em; /* Space above heading */
+    margin-bottom: 1em; /* Space below heading */
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid var(--border-color); /* Separator line */
+}
+.content-card .content-heading:first-of-type {
+    margin-top: 0; /* Remove top margin for the very first heading */
+}
+
+/* Paragraphs within the content card */
+.content-card p {
+    line-height: 1.7;
+    margin-bottom: 1.2em;
+    color: var(--text-color); /* Ensure proper text color */
+}
+.content-card p b {
+    color: var(--heading-color); /* Make bold text slightly more prominent */
+    font-weight: 600; /* Adjust weight if needed */
+}
+.content-card p code {
+    /* Style for inline code like #key */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: var(--text-muted-color);
+}
+[data-theme='light'] .content-card p code {
+    /* Light theme code style */
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text-muted-color);
+}
+
+/* Lists within the content card */
+.content-card ul {
+    list-style: disc; /* Use standard bullets */
+    padding-left: 25px; /* Indentation */
+    margin-bottom: 1.5em; /* Space after lists */
+}
+.content-card li {
+    margin-bottom: 0.8em; /* Space between list items */
+    line-height: 1.6;
+    color: var(--text-color);
+}
+.content-card li b {
+    color: var(--heading-color);
+    font-weight: 600;
+}
+
+/* Links within the content card */
+.content-card a {
+    color: var(--accent-color); /* Use accent color for links */
+    text-decoration: underline;
+    font-weight: 500;
+}
+.content-card a:hover {
+    color: var(--accent-hover-color);
+}
+
+/* Disclaimer text */
+.content-card p i b {
+    /* For the disclaimer italic+bold */
+    color: var(--text-muted-color); /* Make disclaimer less prominent */
+    font-weight: normal; /* Override bold maybe */
+}
+
+/* Ensure section title has spacing */
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+} /* Example */
+
+/* ========================================== */
+/* == ADD/ADJUST THESE STYLES IN style.css == */
+/* ========================================== */
+
+/* --- Contact Page Specific Styles (Optional) --- */
+.contact-main .content-card {
+    /* Adjust padding if needed */
+    padding-bottom: 40px;
+}
+
+.contact-email {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 2em; /* Extra space after email */
+}
+.contact-email a {
+    text-decoration: none; /* Optional: remove underline from email link */
+    word-break: break-all; /* Prevent long emails overflowing */
+}
+.contact-email a:hover {
+    text-decoration: underline; /* Add underline back on hover */
+}
+
+/* --- Form Styling (Add or modify if not already styled well) --- */
+#contact-form {
+    margin-top: 30px; /* Space above form */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form groups */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text-muted-color);
+}
+
+.form-group label .optional {
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--text-muted-color);
+    opacity: 0.8;
+}
+.form-group label .required {
+    color: var(--accent-color); /* Indicate required fields */
+    font-weight: bold;
+    margin-left: 4px;
+}
+
+/* General Input / Textarea Styles (Copy/adapt from app page if available) */
+#contact-form input[type='text'],
+#contact-form input[type='email'],
+#contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--input-bg, rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--input-border, rgba(255, 255, 255, 0.15));
+    border-radius: calc(var(--border-radius, 10px) - 4px);
+    color: var(--text-color, #e0e0e5);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+#contact-form input[type='text']::placeholder,
+#contact-form input[type='email']::placeholder,
+#contact-form textarea::placeholder {
+    color: var(--text-muted-color, #a0a0b5);
+    opacity: 0.7;
+}
+#contact-form input[type='text']:focus,
+#contact-form input[type='email']:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border, var(--secondary-accent, #007bff));
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Use accent color */
+}
+#contact-form textarea {
+    resize: vertical;
+    min-height: 120px; /* Reasonable default height */
+}
+
+/* Submit Button specific styling (if needed beyond .cta-button) */
+.contact-submit-button {
+    /* Adjust width or margin if needed */
+    margin-top: 10px; /* Space above button */
+    align-self: flex-start; /* Align button left */
+    width: auto; /* Don't make it full width unless desired */
+}
+
+.form-notice {
+    font-size: 0.85rem;
+    color: var(--text-muted-color);
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* ========================================== */
+/* == END OF STYLES TO ADD/ADJUST == */
+/* ========================================== */

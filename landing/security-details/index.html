@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Security Details | Ephemeral</title>
+        <link rel="stylesheet" href="/style.css" />
+        <!-- Link to Landing Page CSS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+        <!-- Add Favicon links here -->
+        <meta
+            name="description"
+            content="Learn about the security architecture and privacy commitments of Ephemeral's secure note sharing service." />
+        <meta name="robots" content="index, follow" />
+    </head>
+    <body class="dark-theme">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <header class="site-header glass-nav">
+            <div class="container">
+                <nav class="main-nav">
+                    <a href="/" class="logo">Ephemeral</a>
+                    <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <ul class="nav-links">
+                        <li><a href="/#features">Features</a></li>
+                        <li><a href="/security-details">Security</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/app" class="nav-button primary">Create Note</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="security-details-main">
+            <!-- Added class for potential CSS targeting -->
+            <div class="container section-padding">
+                <h2 class="section-title">Our Approach to Security & Privacy</h2>
+
+                <!-- Wrap content in a card -->
+                <!-- Removed animate-on-scroll from content-card as per previous fix -->
+                <div class="content-card glass-card">
+                    <p>
+                        At Ephemeral, we offer options for sharing information privately. Understanding how different
+                        note types are handled is key to using the service securely. This page details our security
+                        measures.
+                    </p>
+
+                    <h3 class="content-heading">Password-Protected Notes: Client-Side Encryption</h3>
+                    <p>
+                        When you choose to <b>password-protect</b> a note, we employ strong client-side end-to-end
+                        encryption to ensure only you and the intended recipient (who has the password) can read the
+                        content.
+                    </p>
+                    <ul>
+                        <li>
+                            <b>Encryption Process:</b> The encryption happens entirely <b>within your web browser</b>
+                            <i>before</i> any data related to the note content is sent to our servers. We use the
+                            standard <b>AES-CBC</b> encryption algorithm.
+                        </li>
+                        <li>
+                            <b>Your Password is Your Key:</b> Your chosen password is used directly in your browser to
+                            generate a unique encryption key via a secure hashing process (SHA-256).
+                            <b>Your password itself is <i>never</i> sent to our servers.</b>
+                        </li>
+                        <li>
+                            <b>Initialization Vector (IV):</b> For AES-CBC encryption to be secure, a unique, random
+                            Initialization Vector (IV) is generated in your browser for each encrypted note. This IV is
+                            necessary for decryption.
+                        </li>
+                        <li>
+                            <b>What We Store:</b> For password-protected notes, our servers store only:
+                            <ul>
+                                <li>The <b>encrypted note content</b> (unintelligible data).</li>
+                                <li>
+                                    The unique <b>Initialization Vector (IV)</b> associated with that note (required for
+                                    decryption, but does not compromise the key/password).
+                                </li>
+                                <li>Metadata for note function (unique ID, lifespan rules).</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>Zero-Knowledge for Protected Notes:</b> Because the encryption key is derived from your
+                            password (which we never see) and decryption requires both the password and the IV,
+                            <b
+                                >we, the service providers, have no technical means to decrypt or read the content of
+                                your password-protected notes.</b
+                            >
+                        </li>
+                    </ul>
+
+                    <h3 class="content-heading">Unprotected Notes: Convenience Option</h3>
+                    <p>
+                        For situations where exchanging a password is inconvenient and the information is less
+                        sensitive, you can create an unprotected note. It's important to understand how these differ:
+                    </p>
+                    <ul>
+                        <li>
+                            <b>No Client-Side Encryption:</b> Unprotected notes are <b>not</b> encrypted in your browser
+                            before being sent.
+                        </li>
+                        <li>
+                            <b>Plaintext Storage:</b> The content of unprotected notes is sent to and stored on our
+                            servers <b>as plaintext</b>, exactly as you typed it.
+                        </li>
+                        <li>
+                            <b>Server Accessibility:</b> Because they are stored unencrypted, the content of these notes
+                            could potentially be accessible to server administrators or in the event of a server
+                            compromise.
+                        </li>
+                        <li>
+                            <b>Recommendation:</b> We strongly recommend using password protection for any truly
+                            sensitive or confidential information. Unprotected notes should only be used for
+                            non-sensitive content where convenience is the primary factor.
+                        </li>
+                    </ul>
+
+                    <h3 class="content-heading">Minimal Data & No Logs Policy</h3>
+                    <p>
+                        Regardless of note type, we are committed to minimizing data collection and respecting your
+                        privacy:
+                    </p>
+                    <ul>
+                        <li>
+                            <b>No Accounts Required:</b> The service does not require user accounts, sign-ups, or email
+                            addresses.
+                        </li>
+                        <li>
+                            <b>No Logging:</b> We maintain a strict <b>no-logs policy</b>. We do <b>not</b> keep access
+                            logs, error logs, or any other logs that could correlate your activity or IP address with
+                            note creation or viewing.
+                        </li>
+                        <li>
+                            <b>No Personal Information Stored:</b> We do <b>not</b> store Personally Identifiable
+                            Information (PII) such as IP addresses, browser details (User-Agent), location data, or any
+                            information about the creator or viewer of a note.
+                        </li>
+                        <li>
+                            <b>No Third-Party Tracking:</b> We do <b>not</b> embed third-party tracking scripts or
+                            analytics within the core note service.
+                        </li>
+                        <li>
+                            <b>Stored Data Summary:</b> Per note, we only store the functional minimum: the note content
+                            (either plaintext <i>or</i> encrypted blob), the IV (for encrypted notes only), a unique ID,
+                            and its lifespan rules. No data identifies the author.
+                        </li>
+                    </ul>
+
+                    <h3 class="content-heading">Secure Note Lifespan Management</h3>
+                    <p>
+                        Ephemeral provides flexible control over how long your notes exist (this applies to both
+                        protected and unprotected notes):
+                    </p>
+                    <ul>
+                        <li>
+                            <b>One-Time View:</b> Notes set to "One-time View" are deleted from our server after the
+                            link is successfully accessed for the first time.
+                        </li>
+                        <li>
+                            <b>Time-Based Expiry:</b> You can set a specific date and time for a note to expire. Our
+                            system automatically deletes notes once their expiry time is reached.
+                        </li>
+                        <li>
+                            <b>Permanent Notes:</b> Notes marked as "Permanent" are stored indefinitely on our servers
+                            <b
+                                >until the underlying infrastructure is decommissioned or potentially removed through
+                                future administrative processes.</b
+                            >
+                            No author information is associated with these notes. <i>Choose this option carefully.</i>
+                        </li>
+                    </ul>
+
+                    <h3 class="content-heading">Secure Transmission (HTTPS/TLS)</h3>
+                    <p>
+                        All communication between your browser and our servers is protected using industry-standard
+                        Transport Layer Security (TLS/SSL, or HTTPS), encrypting data in transit.
+                    </p>
+
+                    <h3 class="content-heading">Server Security</h3>
+                    <p>
+                        We follow standard security best practices for server configuration, maintenance, and access
+                        control to protect the infrastructure and the data stored on it (whether plaintext or
+                        encrypted).
+                    </p>
+
+                    <h3 class="content-heading">Your Role in Security</h3>
+                    <p>Your choices significantly impact the security of your shared information:</p>
+                    <ul>
+                        <li>
+                            <b>Choose the Right Note Type:</b> Use <b>password protection</b> for all sensitive
+                            information. Only use unprotected notes for non-confidential content.
+                        </li>
+                        <li><b>Share Links Securely:</b> Distribute the note link only through trusted channels.</li>
+                        <li><b>Use Strong Passwords:</b> For protected notes, use a strong, unique password.</li>
+                        <li>
+                            <b>Share Passwords Separately & Securely:</b> Do not send the password in the same message
+                            as the note link for maximum security.
+                        </li>
+                        <li>
+                            <b>Consider "Permanent":</b> Understand that permanent notes persist on our servers
+                            indefinitely, even if anonymously.
+                        </li>
+                    </ul>
+
+                    <h3 class="content-heading">Transparency & Contact</h3>
+                    <p>
+                        We aim for clarity. If you have further questions, please review our
+                        <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a>, or
+                        <a href="/contact.html">contact us</a>.
+                    </p>
+
+                    <p>
+                        <i
+                            ><b>Disclaimer:</b> Ephemeral provides different levels of security based on user choice.
+                            Password-protected notes offer strong client-side encryption. Unprotected notes are stored
+                            as plaintext. No system is infallible. Users are responsible for selecting the appropriate
+                            note type and for how they share links and passwords.</i
+                        >
+                    </p>
+                </div>
+                <!-- End content-card -->
+            </div>
+            <!-- End container -->
+        </main>
+
+        <footer class="site-footer-bottom">
+            <div class="container">
+                <p>© 2025 Ephemeral. Privacy Focused.</p>
+                <ul>
+                    <li><a href="/privacy-policy">Privacy</a></li>
+                    <li><a href="/terms-of-service">Terms of Service</a></li>
+                    <li><a href="/security-details.html">Security</a></li>
+                    <li><a href="/contact-us">Contact</a></li>
+                </ul>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -3,16 +3,33 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Ephemeral - Ultra-Secure Ephemeral Notes</title>
+        <title>Ephemeral - Private & Self-Destructing Notes</title>
+        <!-- Updated Title -->
         <link rel="stylesheet" href="style.css" />
+        <!-- Link to Landing Page CSS -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
-
         <!-- Add Favicon links here -->
+        <meta
+            name="description"
+            content="Share private notes that self-destruct. Optional end-to-end encryption available. No account needed, zero logs, maximum privacy." />
+        <meta
+            name="keywords"
+            content="private note, ephemeral, self-destructing note, encrypted note, secure sharing, no login note, zero logs" />
+        <!-- Add other relevant meta/OG tags -->
+        <meta property="og:title" content="Ephemeral - Private Notes Your Way" />
+        <meta
+            property="og:description"
+            content="Share self-destructing notes with optional end-to-end encryption. No account, no logs." />
+        <meta property="og:image" content="/images/ephemeral-og-image.svg" />
+        <meta property="og:image:type" content="image/svg+xml" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content="https://ephemeral.shahzad.dev/" />
+        <!-- Update URL if needed -->
     </head>
     <body class="dark-theme">
-        <!-- Abstract Background Elements -->
         <div class="background-shapes">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
@@ -22,144 +39,161 @@
         <header class="site-header glass-nav">
             <div class="container">
                 <nav class="main-nav">
-                    <a href="#" class="logo">ephemeral</a>
+                    <a href="/" class="logo">Ephemeral</a>
                     <button class="mobile-nav-toggle" aria-label="Toggle navigation">
-                        <span></span> {/* Burger icon lines */}
-                        <span></span>
-                        <span></span>
+                        <span></span><span></span><span></span>
                     </button>
                     <ul class="nav-links">
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#security">Security</a></li>
-                        <!-- <li><a href="/login" class="nav-button secondary">Sign In</a></li> -->
-                        <li><a href="/app" class="nav-button primary">Launch App</a></li>
+                        <li><a href="/#features">Features</a></li>
+                        <li><a href="/security-details">Security</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/app" class="nav-button primary">Create Note</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
         <main>
-            <!-- Hero Section -->
             <section class="hero">
                 <div class="container hero-content">
                     <div class="hero-text">
-                        <h1 class="animate-on-scroll">Your Secrets, <br />Perfectly Protected.</h1>
+                        <h1 class="animate-on-scroll">Share Privately, Your Way.<br />Notes That Vanish.</h1>
+                        <!-- Adjusted Headline -->
                         <p class="subtitle animate-on-scroll">
-                            Generate end-to-end encrypted, self-destructing notes with unparalleled privacy. Share
-                            sensitive data with confidence.
+                            Create self-destructing notes with optional end-to-end encryption for true privacy. Zero
+                            logs. Zero accounts required.
                         </p>
                         <a href="/app" class="cta-button primary large animate-on-scroll"
-                            >Create Secure Note <span class="arrow">→</span></a
+                            >Create Secure Note Now <span class="arrow">→</span></a
                         >
-                        <p class="subtle-info animate-on-scroll">Zero-knowledge. Zero hassle.</p>
+                        <p class="subtle-info animate-on-scroll">Free & Anonymous Note Creation.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Features Section -->
             <section id="features" class="features section-padding">
                 <div class="container">
-                    <h2 class="section-title animate-on-scroll">The ephemeral Advantage</h2>
+                    <h2 class="section-title animate-on-scroll">Engineered for Simplicity & Choice</h2>
+                    <!-- Updated Title -->
                     <div class="features-grid">
                         <div class="feature-item glass-card animate-on-scroll">
-                            <div class="feature-icon">🔒</div>
-                            <h3>Client-Side E2EE</h3>
+                            <div class="feature-icon">🚫</div>
+                            <h3>No Account Needed</h3>
                             <p>
-                                Encryption happens *in your browser*. We never see your unencrypted data or passwords.
+                                Jump straight into creating notes. No emails, sign-ups, or personal information
+                                required.
                             </p>
                         </div>
                         <div class="feature-item glass-card animate-on-scroll">
-                            <div class="feature-icon">🔥</div>
-                            <h3>Configurable Destruction</h3>
-                            <p>Set notes to vanish after first view, or choose a precise expiry time (hours, days).</p>
+                            <div class="feature-icon">🕵️</div>
+                            <!-- Icon Suggestion: Spy/Incognito -->
+                            <h3>Strict No-Logs Policy</h3>
+                            <p>
+                                We keep <b>no logs</b> of your activity, IP address, or browser details. Your usage is
+                                invisible to us.
+                            </p>
                         </div>
                         <div class="feature-item glass-card animate-on-scroll">
-                            <div class="feature-icon">🔑</div>
-                            <h3>Optional Passwords</h3>
-                            <p>Add robust password protection for an extra security layer against link interception.</p>
+                            <div class="feature-icon">🔒</div>
+                            <h3>Optional E2E Encryption</h3>
+                            <p>
+                                Choose password protection to enable strong, client-side AES encryption. We
+                                <i>never</i> see your password or plaintext.
+                            </p>
                         </div>
                         <div class="feature-item glass-card animate-on-scroll">
-                            <div class="feature-icon">💨</div>
-                            <h3>Instant Link Generation</h3>
-                            <p>Create and get your secure sharing link in seconds. Effortless privacy.</p>
+                            <div class="feature-icon">⏱️</div>
+                            <h3>Configurable Lifespan</h3>
+                            <p>
+                                Notes can self-destruct after the first view, expire at a set time, or remain permanent
+                                until deleted.
+                            </p>
                         </div>
                         <div class="feature-item glass-card animate-on-scroll">
-                            <div class="feature-icon">👤</div>
-                            <h3>Anonymous Use</h3>
-                            <p>No account needed for basic one-time note creation and sharing.</p>
+                            <div class="feature-icon">🧹</div>
+                            <!-- Icon Suggestion: Broom/Trash Can -->
+                            <h3>Automatic Deletion</h3>
+                            <p>
+                                Expired or viewed one-time notes are promptly deleted from our servers according to
+                                their rules.
+                            </p>
                         </div>
                         <div class="feature-item glass-card animate-on-scroll">
-                            <div class="feature-icon">📊</div>
-                            <h3>Managed Notes & Audit</h3>
-                            <p>Optional accounts for note history, management, and view notifications (Premium).</p>
+                            <div class="feature-icon">✨</div>
+                            <h3>Simple & Instant</h3>
+                            <p>Clean interface, zero friction. Generate your sharing link in just a few seconds.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- How It Works Section (Simplified) -->
             <section id="how-it-works" class="how-it-works section-padding alt-background">
                 <div class="container">
-                    <h2 class="section-title animate-on-scroll">Secure Sharing Made Simple</h2>
+                    <h2 class="section-title animate-on-scroll">Simple Steps to Private Sharing</h2>
+                    <!-- Updated Title -->
                     <div class="steps-container">
                         <div class="step-item animate-on-scroll">
                             <div class="step-icon">✍️</div>
                             <h3>1. Compose</h3>
-                            <p>Write or paste your private content.</p>
+                            <p>Write your message in the editor.</p>
                         </div>
                         <div class="step-item animate-on-scroll">
                             <div class="step-icon">⚙️</div>
-                            <h3>2. Configure</h3>
-                            <p>Set encryption, password & lifespan.</p>
+                            <!-- Changed Icon -->
+                            <h3>2. Configure & Secure</h3>
+                            <p>Set lifespan. <b>Optionally add password</b> for client-side E2E encryption.</p>
+                            <!-- Clarified Option -->
                         </div>
                         <div class="step-item animate-on-scroll">
                             <div class="step-icon">🔗</div>
-                            <h3>3. Share Link</h3>
-                            <p>Send the secure link privately.</p>
+                            <h3>3. Share Link Privately</h3>
+                            <p>Send the unique link (and password, if set) securely to your recipient.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Security Section -->
             <section id="security" class="security section-padding">
                 <div class="container security-content glass-card animate-on-scroll">
                     <div class="security-icon-large">🛡️</div>
-                    <h2 class="section-title">Zero-Knowledge Architecture</h2>
+                    <h2 class="section-title">Your Privacy, Your Choice</h2>
+                    <!-- Updated Title -->
                     <p>
-                        Our commitment is absolute privacy. Using <b>client-side AES-256 encryption</b>, your note is
-                        scrambled <i>before</i> it leaves your device. The decryption key is embedded in the URL
-                        fragment (#), which browsers <b>do not send to servers</b>. We only store unintelligible
-                        encrypted data.
+                        Ephemeral offers different levels of privacy. <b>Password-protected notes</b> benefit from
+                        strong client-side end-to-end encryption, meaning we cannot read them.
                     </p>
                     <p>
-                        Your secrets remain yours, always. Review our
-                        <a href="/security-details">Technical Security Details</a>.
+                        <b>Unprotected notes</b> offer convenience but are stored as plaintext on our servers. We keep
+                        <b>zero logs</b> and store no personal data regardless of the note type. Choose the option that
+                        best suits your needs.
                     </p>
+                    <p>Read the full <a href="/security-details.html">Security Details</a> for more information.</p>
                 </div>
             </section>
 
-            <!-- Final CTA Section -->
             <section class="cta-final section-padding alt-background">
                 <div class="container text-center">
-                    <h2 class="section-title animate-on-scroll">Experience True Digital Privacy</h2>
-                    <p class="subtitle animate-on-scroll">Ready to send information securely without a trace?</p>
+                    <h2 class="section-title animate-on-scroll">Ready for Worry-Free Sharing?</h2>
+                    <p class="subtitle animate-on-scroll">Send your first private, self-destructing note now.</p>
                     <a href="/app" class="cta-button primary large animate-on-scroll"
-                        >Launch Secure App <span class="arrow">→</span></a
+                        >Create Free Secure Note <span class="arrow">→</span></a
                     >
+                    <p class="subtle-info animate-on-scroll" style="margin-top: 15px">
+                        No Account. No Logs. Just Privacy Options.
+                    </p>
+                    <!-- Updated Reinforcement -->
                 </div>
             </section>
         </main>
 
         <footer class="site-footer-bottom">
             <div class="container">
-                <p>© 2025 ephemeral. Privacy Engineered.</p>
+                <p>© 2025 Ephemeral. Privacy Focused.</p>
                 <ul>
-                    <li><a href="/privacy">Privacy Policy</a></li>
-                    <li><a href="/terms">Terms</a></li>
-                    <li><a href="/security-details">Security</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy-policy">Privacy</a></li>
+                    <li><a href="/terms-of-service">Terms of Service</a></li>
+                    <li><a href="/security-details.html">Security</a></li>
+                    <li><a href="/contact-us">Contact</a></li>
                 </ul>
             </div>
         </footer>

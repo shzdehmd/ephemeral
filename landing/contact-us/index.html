@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contact Us | Ephemeral</title>
+        <link rel="stylesheet" href="/style.css" />
+        <!-- Link to Landing Page CSS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+        <!-- Add Favicon links here -->
+        <meta name="description" content="Get in touch with the Ephemeral team for questions or feedback." />
+        <meta name="robots" content="index, follow" />
+    </head>
+    <body class="dark-theme">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <header class="site-header glass-nav">
+            <div class="container">
+                <nav class="main-nav">
+                    <a href="/" class="logo">Ephemeral</a>
+                    <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <ul class="nav-links">
+                        <li><a href="/#features">Features</a></li>
+                        <li><a href="/security-details">Security</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/app" class="nav-button primary">Create Note</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="contact-main">
+            <!-- Added class for potential CSS targeting -->
+            <div class="container section-padding">
+                <h2 class="section-title">Get In Touch</h2>
+
+                <div class="content-card glass-card">
+                    <p>
+                        We'd love to hear from you! Whether you have questions about Ephemeral, feedback on the service,
+                        or need assistance, please feel free to reach out.
+                    </p>
+
+                    <h3 class="content-heading">Direct Email</h3>
+                    <p>For direct inquiries, you can email us at:</p>
+                    <p class="contact-email">
+                        <a href="mailto:ephemeral-support@shahzad.dev">ephemeral-support@shahzad.dev</a>
+                    </p>
+
+                    <h3 class="content-heading">Contact Form</h3>
+                    <p>
+                        Alternatively, you can use the form below to send us a message. Please note that form submission
+                        requires server-side processing or a third-party service to function.
+                    </p>
+
+                    <!-- TODO: SERVER-SIDE PROCESSING -->
+                    <form id="contact-form" action="/contact-us" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name <span class="optional">(Optional)</span></label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Your Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject <span class="optional">(Optional)</span></label>
+                            <input type="text" id="subject" name="subject" placeholder="Feedback / Question / etc." />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message <span class="required">*</span></label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="Write your message here..."
+                                required
+                                rows="6"></textarea>
+                        </div>
+
+                        <!-- TODO: CAPTCHA -->
+
+                        <button type="submit" class="cta-button primary contact-submit-button">Send Message</button>
+                        <p class="form-notice">
+                            <i>Please allow 1-2 business days for a response if one is required.</i>
+                        </p>
+                    </form>
+                </div>
+                <!-- End content-card -->
+            </div>
+            <!-- End container -->
+        </main>
+
+        <footer class="site-footer-bottom">
+            <div class="container">
+                <p>© 2025 Ephemeral. Privacy Focused.</p>
+                <ul>
+                    <li><a href="/privacy-policy">Privacy</a></li>
+                    <li><a href="/terms-of-service">Terms of Service</a></li>
+                    <li><a href="/security-details.html">Security</a></li>
+                    <li><a href="/contact-us">Contact</a></li>
+                </ul>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
