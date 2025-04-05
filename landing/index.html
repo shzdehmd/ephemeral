@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ephemeral - Ultra-Secure Ephemeral Notes</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+
+        <!-- Add Favicon links here -->
+    </head>
+    <body class="dark-theme">
+        <!-- Abstract Background Elements -->
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <header class="site-header glass-nav">
+            <div class="container">
+                <nav class="main-nav">
+                    <a href="#" class="logo">ephemeral</a>
+                    <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                        <span></span> {/* Burger icon lines */}
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#security">Security</a></li>
+                        <!-- <li><a href="/login" class="nav-button secondary">Sign In</a></li> -->
+                        <li><a href="/app" class="nav-button primary">Launch App</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container hero-content">
+                    <div class="hero-text">
+                        <h1 class="animate-on-scroll">Your Secrets, <br />Perfectly Protected.</h1>
+                        <p class="subtitle animate-on-scroll">
+                            Generate end-to-end encrypted, self-destructing notes with unparalleled privacy. Share
+                            sensitive data with confidence.
+                        </p>
+                        <a href="/app" class="cta-button primary large animate-on-scroll"
+                            >Create Secure Note <span class="arrow">→</span></a
+                        >
+                        <p class="subtle-info animate-on-scroll">Zero-knowledge. Zero hassle.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="features section-padding">
+                <div class="container">
+                    <h2 class="section-title animate-on-scroll">The ephemeral Advantage</h2>
+                    <div class="features-grid">
+                        <div class="feature-item glass-card animate-on-scroll">
+                            <div class="feature-icon">🔒</div>
+                            <h3>Client-Side E2EE</h3>
+                            <p>
+                                Encryption happens *in your browser*. We never see your unencrypted data or passwords.
+                            </p>
+                        </div>
+                        <div class="feature-item glass-card animate-on-scroll">
+                            <div class="feature-icon">🔥</div>
+                            <h3>Configurable Destruction</h3>
+                            <p>Set notes to vanish after first view, or choose a precise expiry time (hours, days).</p>
+                        </div>
+                        <div class="feature-item glass-card animate-on-scroll">
+                            <div class="feature-icon">🔑</div>
+                            <h3>Optional Passwords</h3>
+                            <p>Add robust password protection for an extra security layer against link interception.</p>
+                        </div>
+                        <div class="feature-item glass-card animate-on-scroll">
+                            <div class="feature-icon">💨</div>
+                            <h3>Instant Link Generation</h3>
+                            <p>Create and get your secure sharing link in seconds. Effortless privacy.</p>
+                        </div>
+                        <div class="feature-item glass-card animate-on-scroll">
+                            <div class="feature-icon">👤</div>
+                            <h3>Anonymous Use</h3>
+                            <p>No account needed for basic one-time note creation and sharing.</p>
+                        </div>
+                        <div class="feature-item glass-card animate-on-scroll">
+                            <div class="feature-icon">📊</div>
+                            <h3>Managed Notes & Audit</h3>
+                            <p>Optional accounts for note history, management, and view notifications (Premium).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works Section (Simplified) -->
+            <section id="how-it-works" class="how-it-works section-padding alt-background">
+                <div class="container">
+                    <h2 class="section-title animate-on-scroll">Secure Sharing Made Simple</h2>
+                    <div class="steps-container">
+                        <div class="step-item animate-on-scroll">
+                            <div class="step-icon">✍️</div>
+                            <h3>1. Compose</h3>
+                            <p>Write or paste your private content.</p>
+                        </div>
+                        <div class="step-item animate-on-scroll">
+                            <div class="step-icon">⚙️</div>
+                            <h3>2. Configure</h3>
+                            <p>Set encryption, password & lifespan.</p>
+                        </div>
+                        <div class="step-item animate-on-scroll">
+                            <div class="step-icon">🔗</div>
+                            <h3>3. Share Link</h3>
+                            <p>Send the secure link privately.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security Section -->
+            <section id="security" class="security section-padding">
+                <div class="container security-content glass-card animate-on-scroll">
+                    <div class="security-icon-large">🛡️</div>
+                    <h2 class="section-title">Zero-Knowledge Architecture</h2>
+                    <p>
+                        Our commitment is absolute privacy. Using <b>client-side AES-256 encryption</b>, your note is
+                        scrambled <i>before</i> it leaves your device. The decryption key is embedded in the URL
+                        fragment (#), which browsers <b>do not send to servers</b>. We only store unintelligible
+                        encrypted data.
+                    </p>
+                    <p>
+                        Your secrets remain yours, always. Review our
+                        <a href="/security-details">Technical Security Details</a>.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Final CTA Section -->
+            <section class="cta-final section-padding alt-background">
+                <div class="container text-center">
+                    <h2 class="section-title animate-on-scroll">Experience True Digital Privacy</h2>
+                    <p class="subtitle animate-on-scroll">Ready to send information securely without a trace?</p>
+                    <a href="/app" class="cta-button primary large animate-on-scroll"
+                        >Launch Secure App <span class="arrow">→</span></a
+                    >
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer-bottom">
+            <div class="container">
+                <p>© 2025 ephemeral. Privacy Engineered.</p>
+                <ul>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms</a></li>
+                    <li><a href="/security-details">Security</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
