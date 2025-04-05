@@ -12,12 +12,12 @@
         <!-- OG Tags (Generic or update as needed) -->
         <meta property="og:title" content="Ephemeral - Secure Note" />
         <meta property="og:description" content="Viewing a private note." />
-        <meta property="og:image" content="/app/images/ephemeral_note_preview.png" />
+        <meta property="og:image" content="{{ url }}/images/ephemeral_note_preview.png" />
         <meta property="og:url" content="{{ url }}/view/{{ slug }}" />
 
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="/app/css/reset.css" />
-        <link rel="stylesheet" href="/app/css/styles.css" />
+        <link rel="stylesheet" href="{{ url }}/css/reset.css" />
+        <link rel="stylesheet" href="{{ url }}/css/styles.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -107,8 +107,11 @@
         </div>
 
         <!-- Include decryption scripts only if needed -->
-        <script src="/app/js/crypto.js"></script>
-        <script src="/app/js/noteHandler.js"></script>
+        <script>
+            const baseUrl = '{{ url }}';
+        </script>
+        <script src="{{ url }}/js/crypto.js"></script>
+        <script src="{{ url }}/js/noteHandler.js"></script>
         {% endif %} {# --- End of Password Modal Section --- #}
     </body>
 </html>

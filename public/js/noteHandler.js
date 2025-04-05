@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add a click event listener to the modal-close button.
     // When clicked, the user is redirected to the homepage.
     document.getElementById('modal-close').addEventListener('click', () => {
-        window.location.href = '/';
+        window.location.href = baseUrl;
     });
 
     // Add a click event listener to the unlock button.

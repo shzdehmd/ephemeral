@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Send the note to the server using a POST request
-        const res = await fetch('/create', {
+        const res = await fetch(`${baseUrl}/create`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // If the note was successfully created, display the note link in a modal
         if (data.success) {
-            const link = `${window.location.href}view/${data.slug}`;
+            const link = `${baseUrl.replace('/app', '')}/view/${data.slug}`;
             document.getElementById('output-link-input').value = link;
             document.getElementById('modal-background').classList.remove('hidden');
             document.getElementById('modal').classList.remove('hidden');
