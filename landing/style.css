@@ -1,30 +1,53 @@
-/* --- Global Reset & Base Styles --- */
+/* style.css - Complete Combined Styles */
+
+/* --- Global Reset Import (Keep if you use one) --- */
+/* @import url('reset.css'); */ /* Uncomment if you have a reset.css */
+
+/* ---------------------------- */
+/* ----- Global Variables ----- */
+/* ---------------------------- */
 :root {
-    /* Dark Theme Colors */
-    --bg-color: #0f0f1a; /* Dark blue/purple */
-    --bg-secondary-color: #1a1a2e; /* Slightly lighter dark */
-    --text-color: #e0e0e5; /* Light grey/off-white */
-    --text-muted-color: #a0a0b5; /* Muted grey */
+    /* Color Scheme Meta Tag tells browser about supported schemes */
+    color-scheme: light dark; /* Add this if not already present */
+
+    /* --- Default: Dark Theme Variables --- */
+    --bg-color: #0f0f1a;
+    --bg-secondary-color: #1a1a2e;
+    --text-color: #e0e0e5;
+    --text-muted-color: #a0a0b5;
     --heading-color: #ffffff;
     --primary-accent: #6a0dad; /* Vibrant Purple */
     --secondary-accent: #007bff; /* Vibrant Blue */
     --accent-gradient: linear-gradient(135deg, var(--primary-accent) 0%, var(--secondary-accent) 100%);
-    --glass-bg: rgba(255, 255, 255, 0.05); /* Low opacity white for glass */
+    --glass-bg: rgba(26, 26, 46, 0.6); /* Main glass effect bg */
+    --nav-glass-bg: rgba(255, 255, 255, 0.05); /* More transparent for nav maybe */
     --glass-border: rgba(255, 255, 255, 0.1);
-    --card-bg: #1f1f3a; /* Dark card background if not glass */
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.15);
+    --input-focus-border: var(--secondary-accent);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); /* Default card shadow */
 
+    /* --- Base Variables (Theme Independent) --- */
     --font-family: 'Inter', sans-serif;
     --heading-font-weight: 700;
     --base-font-weight: 400;
-    --medium-font-weight: 500; /* Added */
+    --medium-font-weight: 500;
 
-    --border-radius: 12px; /* Slightly larger radius */
+    --border-radius: 12px;
     --section-padding: 100px 0;
     --container-max-width: 1140px;
-    --transition-speed: 0.4s ease; /* Slightly slower for smoother feel */
-    --blur-intensity: 15px; /* Glass blur */
+    --transition-speed: 0.4s ease;
+    --blur-intensity: 10px;
 }
 
+/* --- Add Light Theme Variables (If Supporting Manual Toggle/OS Light Mode) --- */
+/* Optional: Define light theme vars if needed */
+/* [data-theme="light"] { ... } */
+/* @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { ... } } */
+
+/* ---------------------------- */
+/* ----- CSS Reset (Minimal Example - Use your reset.css if preferred) ----- */
+/* ---------------------------- */
 *,
 *::before,
 *::after {
@@ -32,100 +55,39 @@
     margin: 0;
     padding: 0;
 }
-
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
-}
-
+} /* Adjust scroll padding if header height changes */
 body {
     font-family: var(--font-family);
     font-weight: var(--base-font-weight);
-    line-height: 1.7; /* Increased line height */
+    line-height: 1.7;
     color: var(--text-color);
     background-color: var(--bg-color);
-    background-image: linear-gradient(180deg, var(--bg-color) 0%, #141424 100%); /* Subtle gradient */
+    background-image: linear-gradient(180deg, var(--bg-color) 0%, #141424 100%);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden; /* Prevent horizontal scroll from shapes */
-    position: relative; /* For absolute positioned shapes */
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
 }
-
-/* --- Abstract Background Shapes --- */
-.background-shapes {
-    position: fixed; /* Fixed position to stay during scroll */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1; /* Behind all content */
-    pointer-events: none; /* Don't interfere with clicks */
+ul {
+    list-style: none;
 }
-
-.shape {
-    position: absolute;
-    border-radius: 50%; /* Make them circles initially */
-    background: linear-gradient(
-        135deg,
-        rgba(106, 13, 173, 0.15) 0%,
-        rgba(0, 123, 255, 0.15) 100%
-    ); /* Use accent colors, low opacity */
-    filter: blur(80px); /* Heavy blur for soft effect */
-    opacity: 0.6; /* Adjust opacity */
-    animation: drift 20s infinite alternate ease-in-out;
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
-
-.shape-1 {
-    width: 400px;
-    height: 400px;
-    top: 10%;
-    left: 5%;
-    animation-duration: 25s; /* Vary speeds */
+a {
+    color: var(--secondary-accent);
+    text-decoration: none;
+    transition: color var(--transition-speed);
 }
-
-.shape-2 {
-    width: 500px;
-    height: 500px;
-    top: 60%;
-    right: 10%;
-    animation-duration: 30s;
-    animation-delay: -5s; /* Offset animation start */
-    background: linear-gradient(
-        135deg,
-        rgba(0, 123, 255, 0.1) 0%,
-        rgba(106, 13, 173, 0.1) 100%
-    ); /* Reversed gradient */
+a:hover {
+    color: var(--heading-color);
 }
-
-.shape-3 {
-    width: 300px;
-    height: 300px;
-    bottom: 5%;
-    left: 30%;
-    filter: blur(100px);
-    animation-duration: 20s;
-    animation-delay: -10s;
-}
-
-@keyframes drift {
-    0% {
-        transform: translate(0, 0) rotate(0deg) scale(1);
-    }
-    50% {
-        transform: translate(40px, 60px) rotate(180deg) scale(1.1);
-    }
-    100% {
-        transform: translate(-20px, -30px) rotate(360deg) scale(1);
-    }
-}
-
-.container {
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
 h1,
 h2,
 h3 {
@@ -146,72 +108,144 @@ h2 {
 h3 {
     font-size: 1.5rem;
 }
-
 p {
     margin-bottom: 1.2rem;
     color: var(--text-muted-color);
 }
-a {
-    color: var(--secondary-accent);
-    text-decoration: none;
-    transition: color var(--transition-speed);
-}
-a:hover {
-    color: var(--heading-color);
-}
-
-ul {
-    list-style: none;
-}
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+code {
+    /* Basic code style */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: var(--text-muted-color);
 }
 
+/* ---------------------------- */
+/* ----- Layout & Helpers ----- */
+/* ---------------------------- */
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
 .section-padding {
     padding: var(--section-padding);
 }
 .alt-background {
     background-color: rgba(26, 26, 46, 0.5);
-} /* Semi-transparent dark */
+}
 .text-center {
     text-align: center;
 }
+.subtle-info {
+    font-size: 0.9rem;
+    color: var(--text-muted-color);
+    opacity: 0.8;
+}
+body.no-scroll {
+    overflow: hidden;
+} /* Prevent scroll when mobile menu open */
 
-/* --- Glassmorphism Effect --- */
+/* ---------------------------- */
+/* ----- Abstract Background Shapes ----- */
+/* ---------------------------- */
+.background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(106, 13, 173, 0.1) 0%, rgba(0, 123, 255, 0.1) 100%);
+    filter: blur(100px);
+    opacity: 0.5;
+    animation: drift 25s infinite alternate ease-in-out;
+}
+.shape-1 {
+    width: 450px;
+    height: 450px;
+    top: 5%;
+    left: 10%;
+    animation-duration: 28s;
+}
+.shape-2 {
+    width: 550px;
+    height: 550px;
+    top: 55%;
+    right: 5%;
+    animation-duration: 32s;
+    animation-delay: -5s;
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.08) 0%, rgba(106, 13, 173, 0.08) 100%);
+}
+.shape-3 {
+    width: 350px;
+    height: 350px;
+    bottom: 10%;
+    left: 35%;
+    filter: blur(120px);
+    animation-duration: 22s;
+    animation-delay: -10s;
+    opacity: 0.4;
+}
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    50% {
+        transform: translate(30px, 50px) rotate(180deg) scale(1.1);
+    }
+    100% {
+        transform: translate(-15px, -25px) rotate(360deg) scale(1);
+    }
+}
+
+/* ---------------------------- */
+/* ----- Glassmorphism Effect ----- */
+/* ---------------------------- */
 .glass-nav,
 .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--blur-intensity));
-    -webkit-backdrop-filter: blur(var(--blur-intensity)); /* Safari */
+    -webkit-backdrop-filter: blur(var(--blur-intensity));
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: var(--card-shadow);
+}
+.glass-nav {
+    background: var(--nav-glass-bg); /* Potentially different transparency for nav */
 }
 
-/* --- Buttons --- */
+/* ---------------------------- */
+/* ----- Buttons ----- */
+/* ---------------------------- */
 .cta-button,
 .nav-button {
-    display: inline-block;
-    padding: 14px 32px; /* Slightly larger */
+    display: inline-flex; /* Align icon/text */
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
     border-radius: var(--border-radius);
-    font-weight: var(--medium-font-weight); /* Medium weight */
-    text-align: center;
+    font-weight: var(--medium-font-weight);
     cursor: pointer;
-    transition: all var(--transition-speed); /* Animate all props */
+    transition: all var(--transition-speed);
     border: none;
     font-size: 1rem;
     letter-spacing: 0.5px;
+    text-align: center;
+    gap: 8px; /* Space between text and arrow */
 }
-.cta-button .arrow,
-.nav-button .arrow {
+.cta-button .arrow {
     transition: transform 0.2s ease-out;
     display: inline-block;
-    margin-left: 8px;
 }
-.cta-button:hover .arrow,
-.nav-button:hover .arrow {
+.cta-button:hover .arrow {
     transform: translateX(4px);
 }
 
@@ -219,7 +253,7 @@ img {
 .nav-button.primary {
     background: var(--accent-gradient);
     color: var(--heading-color);
-    box-shadow: 0 4px 15px rgba(106, 13, 173, 0.3); /* Shadow matching accent */
+    box-shadow: 0 4px 15px rgba(106, 13, 173, 0.3);
 }
 .cta-button.primary:hover,
 .nav-button.primary:hover {
@@ -230,11 +264,11 @@ img {
 .nav-button.secondary {
     background-color: transparent;
     color: var(--text-color);
-    border: 1px solid var(--glass-border); /* Match glass border */
+    border: 1px solid var(--glass-border);
     margin-right: 10px;
 }
 .nav-button.secondary:hover {
-    background-color: var(--glass-border); /* Subtle hover */
+    background-color: var(--glass-border);
     color: var(--heading-color);
 }
 
@@ -243,31 +277,29 @@ img {
     font-size: 1.1rem;
 }
 
-/* --- Header & Navigation --- */
+/* ---------------------------- */
+/* ----- Header & Desktop Navigation ----- */
+/* ---------------------------- */
 .site-header {
     position: sticky;
     top: 0;
     left: 0;
-    width: 100%;
-    z-index: 1000;
+    width: calc(100% - 50px);
+    z-index: 1000; /* Below mobile menu overlay */
     padding: 15px 0;
-    margin-top: 15px; /* Space from top for effect */
+    margin-top: 15px;
     margin-bottom: 15px;
 }
-/* Remove margin for container inside header */
 .site-header .container {
-    max-width: calc(var(--container-max-width) + 40px); /* Slightly wider for nav */
-    padding: 0 20px; /* Reset padding */
+    max-width: calc(var(--container-max-width) + 40px);
+    padding: 0 20px;
 }
-
 .glass-nav {
-    /* Apply glass effect directly */
-    margin-left: auto; /* Center the nav bar */
+    margin-left: auto;
     margin-right: auto;
-    max-width: calc(var(--container-max-width) + 80px); /* Control width of glass */
-    border-radius: 15px; /* Slightly more rounded for nav */
+    max-width: calc(var(--container-max-width) + 80px);
+    border-radius: 15px;
 }
-
 .main-nav {
     display: flex;
     justify-content: space-between;
@@ -282,14 +314,14 @@ img {
     color: var(--secondary-accent);
 }
 
+/* DESKTOP Navigation Links */
 .nav-links {
-    display: flex;
+    display: flex; /* Shown by default */
     align-items: center;
 }
 .nav-links li {
     margin-left: 30px;
 }
-
 .nav-links a:not(.nav-button) {
     color: var(--text-muted-color);
     font-weight: var(--medium-font-weight);
@@ -301,7 +333,6 @@ img {
     color: var(--heading-color);
 }
 .nav-links a:not(.nav-button)::after {
-    /* Underline effect */
     content: '';
     position: absolute;
     bottom: -2px;
@@ -315,17 +346,18 @@ img {
     width: 100%;
 }
 
-/* --- Mobile Navigation --- */
+/* ---------------------------- */
+/* ----- Mobile Navigation Trigger (Hamburger) --- */
+/* ---------------------------- */
 .mobile-nav-toggle {
-    display: none;
+    display: none; /* Hidden by default, shown in media query */
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
-    z-index: 1001; /* Above nav links */
+    z-index: 1101; /* Above mobile menu overlay */
 }
 .mobile-nav-toggle span {
-    /* Burger lines */
     display: block;
     width: 25px;
     height: 3px;
@@ -334,7 +366,7 @@ img {
     border-radius: 3px;
     transition: all 0.3s ease-in-out;
 }
-/* Active state for burger icon (X) */
+/* Active state for toggle icon (X) */
 .mobile-nav-toggle.active span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
@@ -345,30 +377,106 @@ img {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* --- Hero Section --- */
+/* ---------------------------- */
+/* ----- SEPARATE Mobile Menu Overlay --- */
+/* ---------------------------- */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 15, 26, 0.98); /* Very opaque dark background */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1100; /* High z-index */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%); /* Slide down effect */
+    transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease-out;
+}
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.mobile-menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-muted-color);
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 5px;
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+.mobile-menu-close:hover {
+    color: var(--heading-color);
+    transform: rotate(90deg);
+}
+.mobile-menu-overlay nav {
+    width: 100%;
+}
+.mobile-menu-overlay ul {
+    padding: 0;
+    margin: 0;
+}
+.mobile-menu-overlay li {
+    margin-bottom: 25px;
+}
+.mobile-menu-overlay a {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-muted-color);
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: color var(--transition-speed);
+}
+.mobile-menu-overlay a:hover {
+    color: var(--heading-color);
+}
+.mobile-menu-button {
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---------------------------- */
+/* ----- Hero Section ----- */
+/* ---------------------------- */
 .hero {
     padding: 140px 0 120px;
     min-height: 80vh;
     display: flex;
     align-items: center;
-    text-align: center; /* Center text */
-    position: relative; /* For potential future elements */
+    text-align: center;
+    position: relative;
     overflow: hidden;
 }
-
 .hero-content {
-    max-width: 800px; /* Control text width */
+    max-width: 800px;
     margin: 0 auto;
 }
-
 .hero h1 {
     background: linear-gradient(90deg, var(--heading-color) 0%, var(--text-muted-color) 100%);
-    -webkit-background-clip: text;
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 25px;
 }
-
 .hero .subtitle {
     font-size: 1.3rem;
     color: var(--text-muted-color);
@@ -378,28 +486,22 @@ img {
     margin-right: auto;
 }
 
-.hero .subtle-info {
-    font-size: 0.9rem;
-    color: var(--text-muted-color);
-    opacity: 0.7;
-    margin-top: 20px;
-}
-
-/* --- Features Section --- */
+/* ---------------------------- */
+/* ----- Features Section ----- */
+/* ---------------------------- */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
 }
-
 .feature-item {
-    padding: 35px 30px; /* More padding */
+    padding: 35px 30px;
     text-align: center;
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
 .feature-item:hover {
-    transform: translateY(-8px); /* More lift */
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 .feature-icon {
     font-size: 2.8rem;
@@ -418,7 +520,9 @@ img {
     margin-bottom: 0;
 }
 
-/* --- How It Works Section --- */
+/* ---------------------------- */
+/* ----- How It Works Section ----- */
+/* ---------------------------- */
 #how-it-works h2 {
     margin-bottom: 70px;
 }
@@ -433,12 +537,12 @@ img {
     padding: 20px;
 }
 .step-icon {
-    /* Use icon instead of number */
     font-size: 3rem;
     margin-bottom: 20px;
     display: inline-block;
     background: var(--accent-gradient);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .step-item h3 {
@@ -452,17 +556,20 @@ img {
     margin-bottom: 0;
 }
 
-/* --- Security Section --- */
+/* ---------------------------- */
+/* ----- Security Section ----- */
+/* ---------------------------- */
 .security-content {
     max-width: 850px;
     margin: 0 auto;
     text-align: center;
-    padding: 50px 40px; /* Padding inside the glass card */
+    padding: 50px 40px;
 }
 .security-icon-large {
     font-size: 4rem;
     margin-bottom: 25px;
     color: var(--secondary-accent);
+    display: inline-block;
 }
 .security-content h2 {
     font-size: 2rem;
@@ -473,7 +580,8 @@ img {
     line-height: 1.8;
     color: var(--text-color);
 }
-.security-content strong {
+.security-content strong,
+.security-content b {
     color: var(--heading-color);
     font-weight: var(--medium-font-weight);
 }
@@ -481,21 +589,25 @@ img {
     font-weight: var(--medium-font-weight);
 }
 
-/* --- Final CTA Section --- */
+/* ---------------------------- */
+/* ----- Final CTA Section ----- */
+/* ---------------------------- */
 .cta-final .subtitle {
     margin-bottom: 40px;
     font-size: 1.2rem;
     color: var(--text-muted-color);
 }
 
-/* --- Footer --- */
+/* ---------------------------- */
+/* ----- Footer ----- */
+/* ---------------------------- */
 .site-footer-bottom {
-    background-color: transparent; /* Let body background show */
+    background-color: transparent;
     color: var(--text-muted-color);
     padding: 40px 0;
     margin-top: 80px;
     font-size: 0.9rem;
-    border-top: 1px solid var(--glass-border); /* Subtle separator */
+    border-top: 1px solid var(--glass-border);
 }
 .site-footer-bottom .container {
     display: flex;
@@ -517,327 +629,74 @@ img {
     color: var(--heading-color);
 }
 
-/* --- Animations --- */
+/* ---------------------------- */
+/* ----- Animations ----- */
+/* ---------------------------- */
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(40px); /* Start further down */
-    transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); /* Smoother easing */
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
-
-/* --- Responsive Design --- */
-@media (max-width: 992px) {
-    :root {
-        --section-padding: 80px 0;
-        --blur-intensity: 10px;
-    }
-    h1 {
-        font-size: 2.8rem;
-    }
-    h2 {
-        font-size: 2.2rem;
-    }
-    .steps-container {
-        flex-direction: column;
-        gap: 40px;
-    }
-    .shape {
-        filter: blur(60px);
-        opacity: 0.4;
-    } /* Reduce intensity */
-    .shape-1 {
-        width: 300px;
-        height: 300px;
-    }
-    .shape-2 {
-        width: 400px;
-        height: 400px;
-    }
-    .shape-3 {
-        width: 250px;
-        height: 250px;
-    }
-}
-
-@media (max-width: 768px) {
-    html {
-        scroll-padding-top: 70px;
-    }
-    :root {
-        --section-padding: 60px 0;
-        --blur-intensity: 8px;
-    }
-    h1 {
-        font-size: 2.4rem;
-    }
-    h2 {
-        font-size: 2rem;
-        margin-bottom: 40px;
-    }
-    h3 {
-        font-size: 1.3rem;
-    }
-    .hero .subtitle {
-        font-size: 1.1rem;
-    }
-
-    /* Mobile Nav */
-    .site-header {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding: 10px 0;
-    }
-    .glass-nav {
-        max-width: calc(100% - 30px); /* Almost full width */
-    }
-    .mobile-nav-toggle {
-        display: block;
-    }
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0; /* Full height */
-        width: 280px; /* Fixed width */
-        background: rgba(15, 15, 26, 0.85); /* Darker, more opaque glass for menu */
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        flex-direction: column;
-        align-items: flex-start; /* Align text left */
-        padding: 100px 30px 30px; /* Padding top for close button */
-        transform: translateX(100%); /* Start off-screen */
-        transition: transform 0.4s ease-in-out;
-        z-index: 1000; /* Below toggle */
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
-    }
-    .nav-links.active {
-        transform: translateX(0);
-    }
-    .nav-links li {
-        margin: 0 0 20px 0;
-        width: 100%;
-    } /* Full width list items */
-    .nav-links a {
-        display: block;
-        padding: 10px 0;
-        font-size: 1.1rem;
-    }
-    .nav-links a:not(.nav-button)::after {
-        display: none;
-    }
-    .nav-button {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
-        text-align: center;
-    }
-    .nav-button.secondary {
-        margin-right: 0;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .site-footer-bottom .container {
-        flex-direction: column;
-        text-align: center;
-    }
-    .site-footer-bottom ul {
-        margin-top: 15px;
-        padding-left: 0;
-        justify-content: center;
-    }
-    .site-footer-bottom li {
-        margin: 0 12px;
-    }
-
-    .shape {
-        display: none;
-    } /* Hide complex shapes on small mobile maybe */
-}
-
-/* styles.css */
-
-/* --- Keep ALL existing styles from the previous dark/glass/modern version --- */
-/* Including: */
-/* - :root variables (dark theme colors, fonts, etc.) */
-/* - Abstract Background Shapes styles */
-/* - Base styles (body, container, headings, links, etc.) */
-/* - Glassmorphism styles */
-/* - Button styles (.cta-button, .nav-button) */
-/* - Header & Desktop Navigation styles */
-/* - Hero Section styles */
-/* - Features Section styles (.features-grid, .feature-item, .feature-icon) */
-/* - How It Works Section styles (.steps-container, .step-item, .step-icon) */
-/* - Security Section styles */
-/* - Final CTA Section styles */
-/* - Footer styles */
-/* - Animation styles (.animate-on-scroll) */
-/* - Responsive styles for Tablets (@media (max-width: 992px)) */
-
-/* --- MODIFICATION: Mobile Navigation Styles --- */
-@media (max-width: 768px) {
-    /* ... (keep other mobile styles like html scroll-padding, font sizes) ... */
-
-    /* Mobile Nav Menu Styles */
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 280px; /* Or your preferred width */
-
-        /* --- BACKGROUND FIX --- */
-        /* Use a near-solid background from your theme */
-        /* Option 1: Use a secondary dark color */
-        /* background-color: var(--bg-secondary-color); */
-
-        /* Option 2: Use a much less transparent glass effect */
-        background-color: rgba(26, 26, 46, 0.95); /* Dark bg with high opacity */
-        backdrop-filter: blur(15px); /* Keep blur for effect */
-        -webkit-backdrop-filter: blur(15px);
-        /* --- END BACKGROUND FIX --- */
-
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 100px 30px 30px;
-        transform: translateX(100%);
-        transition: transform 0.4s ease-in-out;
-        z-index: 1000;
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
-        overflow-y: auto; /* Add scroll if many links */
-    }
-    .nav-links.active {
-        transform: translateX(0);
-    }
-    .nav-links li {
-        margin: 0 0 20px 0;
-        width: 100%;
-    }
-    .nav-links a {
-        display: block;
-        padding: 10px 0;
-        font-size: 1.1rem;
-    }
-    .nav-links a:not(.nav-button)::after {
-        display: none;
-    }
-    .nav-button {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
-        text-align: center;
-    }
-    .nav-button.secondary {
-        margin-right: 0;
-    }
-
-    .mobile-nav-toggle {
-        display: block;
-        z-index: 1001; /* Ensure toggle is above menu */
-    }
-    .mobile-nav-toggle.active span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    .mobile-nav-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-    .mobile-nav-toggle.active span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-    /* ... (keep other mobile styles like .features-grid stacking, footer centering) ... */
-
-    /* Ensure background shapes don't interfere visually */
-    .shape {
-        opacity: 0.2;
-        filter: blur(80px);
-    } /* Further reduce opacity/blur on mobile maybe */
-}
-
-/* --- Ensure Icon Styles are Present (if updated) --- */
-.feature-icon {
-    font-size: 2.8rem;
-    margin-bottom: 20px;
-    display: inline-block;
-    line-height: 1;
-    /* Add any specific icon styling here if needed */
-}
-
-/* --- Ensure Security Icon Large is styled --- */
-.security-icon-large {
-    font-size: 4rem;
-    margin-bottom: 25px;
-    color: var(--secondary-accent); /* Or your preferred security color */
-    display: inline-block;
-}
+/* Add specific animation delays if needed */
 
 /* ========================================== */
-/* == ADD THESE STYLES TO style.css == */
+/* == Specific Styles for Internal Pages (e.g., Security, Privacy, Terms, Contact) == */
 /* ========================================== */
 
 /* --- Layout for Pages using Header/Footer/Main --- */
-
-/* Ensure body allows main content to grow if using flex */
-/* If your body already has display:flex and flex-direction:column, this is good */
-/* body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-} */
-
-/* CRITICAL: Ensure the main content area can grow */
-/* Target the main element specifically on this page, or apply flex-grow: 1; more broadly if appropriate */
-main.security-details-main {
-    flex-grow: 1; /* Allows main to take up space between header and footer */
-    width: 100%; /* Ensure it takes full width */
-    display: block; /* Explicitly set display */
+main.security-details-main,
+main.privacy-policy-main,
+main.terms-of-service-main,
+main.contact-main {
+    flex-grow: 1;
+    width: 100%;
+    display: block;
 }
-
-/* --- Styling for Security Details Page Content --- */
 
 /* Style for the card holding the text content */
 .content-card {
-    background-color: var(--card-bg, var(--glass-bg, #1e1e1e)); /* Use existing card/glass variables */
+    background-color: var(--card-bg, var(--glass-bg, #1e1e1e));
     border-radius: var(--border-radius, 12px);
-    padding: 35px 40px; /* Adjust padding as needed */
-    margin-top: 40px; /* Space below page title */
+    padding: 35px 40px;
+    margin-top: 40px;
     border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
-    box-shadow: var(--card-shadow, 0 8px 32px rgba(0, 0, 0, 0.2)); /* Use existing shadow */
-    color: var(--text-color); /* Ensure text color contrasts with card */
-    z-index: 1000;
+    box-shadow: var(--card-shadow, 0 8px 32px rgba(0, 0, 0, 0.2));
+    color: var(--text-color);
+    /* Removed animate-on-scroll default opacity override, fixed by removing class in HTML */
 }
 
 /* Headings within the content card */
 .content-card .content-heading {
-    font-size: 1.5rem; /* Adjust size as needed */
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--heading-color);
-    margin-top: 2.5em; /* Space above heading */
-    margin-bottom: 1em; /* Space below heading */
+    margin-top: 2.5em;
+    margin-bottom: 1em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid var(--border-color); /* Separator line */
+    border-bottom: 1px solid var(--border-color);
 }
 .content-card .content-heading:first-of-type {
-    margin-top: 0; /* Remove top margin for the very first heading */
+    margin-top: 0;
 }
 
 /* Paragraphs within the content card */
 .content-card p {
     line-height: 1.7;
     margin-bottom: 1.2em;
-    color: var(--text-color); /* Ensure proper text color */
+    color: var(--text-color);
+}
+.content-card p i {
+    font-style: italic;
 }
 .content-card p b {
-    color: var(--heading-color); /* Make bold text slightly more prominent */
-    font-weight: 600; /* Adjust weight if needed */
+    color: var(--heading-color);
+    font-weight: 600;
 }
 .content-card p code {
-    /* Style for inline code like #key */
     background-color: rgba(255, 255, 255, 0.1);
     padding: 0.2em 0.4em;
     border-radius: 4px;
@@ -845,19 +704,22 @@ main.security-details-main {
     color: var(--text-muted-color);
 }
 [data-theme='light'] .content-card p code {
-    /* Light theme code style */
     background-color: rgba(0, 0, 0, 0.05);
     color: var(--text-muted-color);
 }
 
 /* Lists within the content card */
 .content-card ul {
-    list-style: disc; /* Use standard bullets */
-    padding-left: 25px; /* Indentation */
-    margin-bottom: 1.5em; /* Space after lists */
+    list-style: disc;
+    padding-left: 25px;
+    margin-bottom: 1.5em;
 }
+.content-card ul ul {
+    list-style-type: circle;
+    margin-top: 0.5em;
+} /* Nested list style */
 .content-card li {
-    margin-bottom: 0.8em; /* Space between list items */
+    margin-bottom: 0.8em;
     line-height: 1.6;
     color: var(--text-color);
 }
@@ -868,7 +730,7 @@ main.security-details-main {
 
 /* Links within the content card */
 .content-card a {
-    color: var(--accent-color); /* Use accent color for links */
+    color: var(--accent-color);
     text-decoration: underline;
     font-weight: 500;
 }
@@ -878,53 +740,38 @@ main.security-details-main {
 
 /* Disclaimer text */
 .content-card p i b {
-    /* For the disclaimer italic+bold */
-    color: var(--text-muted-color); /* Make disclaimer less prominent */
-    font-weight: normal; /* Override bold maybe */
+    color: var(--text-muted-color);
+    font-weight: normal;
 }
 
-/* Ensure section title has spacing */
-.section-title {
-    text-align: center;
-    margin-bottom: 60px;
-} /* Example */
-
-/* ========================================== */
-/* == ADD/ADJUST THESE STYLES IN style.css == */
-/* ========================================== */
-
-/* --- Contact Page Specific Styles (Optional) --- */
+/* --- Contact Page Specific Styles --- */
 .contact-main .content-card {
-    /* Adjust padding if needed */
     padding-bottom: 40px;
 }
-
 .contact-email {
     font-size: 1.1rem;
     font-weight: 500;
-    margin-bottom: 2em; /* Extra space after email */
+    margin-bottom: 2em;
 }
 .contact-email a {
-    text-decoration: none; /* Optional: remove underline from email link */
-    word-break: break-all; /* Prevent long emails overflowing */
+    text-decoration: none;
+    word-break: break-all;
 }
 .contact-email a:hover {
-    text-decoration: underline; /* Add underline back on hover */
+    text-decoration: underline;
 }
 
-/* --- Form Styling (Add or modify if not already styled well) --- */
+/* --- Contact Form Styling --- */
 #contact-form {
-    margin-top: 30px; /* Space above form */
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between form groups */
+    gap: 20px;
 }
-
 .form-group {
     display: flex;
     flex-direction: column;
 }
-
 .form-group label {
     display: block;
     margin-bottom: 8px;
@@ -932,7 +779,6 @@ main.security-details-main {
     font-size: 0.95rem;
     color: var(--text-muted-color);
 }
-
 .form-group label .optional {
     font-weight: 400;
     font-size: 0.85rem;
@@ -940,12 +786,10 @@ main.security-details-main {
     opacity: 0.8;
 }
 .form-group label .required {
-    color: var(--accent-color); /* Indicate required fields */
+    color: var(--accent-color);
     font-weight: bold;
     margin-left: 4px;
 }
-
-/* General Input / Textarea Styles (Copy/adapt from app page if available) */
 #contact-form input[type='text'],
 #contact-form input[type='email'],
 #contact-form textarea {
@@ -969,21 +813,17 @@ main.security-details-main {
 #contact-form textarea:focus {
     outline: none;
     border-color: var(--input-focus-border, var(--secondary-accent, #007bff));
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Use accent color */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 #contact-form textarea {
     resize: vertical;
-    min-height: 120px; /* Reasonable default height */
+    min-height: 120px;
 }
-
-/* Submit Button specific styling (if needed beyond .cta-button) */
 .contact-submit-button {
-    /* Adjust width or margin if needed */
-    margin-top: 10px; /* Space above button */
-    align-self: flex-start; /* Align button left */
-    width: auto; /* Don't make it full width unless desired */
+    margin-top: 10px;
+    align-self: flex-start;
+    width: auto;
 }
-
 .form-notice {
     font-size: 0.85rem;
     color: var(--text-muted-color);
@@ -991,6 +831,97 @@ main.security-details-main {
     text-align: center;
 }
 
-/* ========================================== */
-/* == END OF STYLES TO ADD/ADJUST == */
-/* ========================================== */
+/* ---------------------------- */
+/* ----- Responsive Adjustments ----- */
+/* ---------------------------- */
+@media (max-width: 992px) {
+    :root {
+        --section-padding: 80px 0;
+        --blur-intensity: 10px;
+    }
+    h1 {
+        font-size: 2.8rem;
+    }
+    h2 {
+        font-size: 2.2rem;
+    }
+    .steps-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .shape {
+        filter: blur(60px);
+        opacity: 0.4;
+    }
+    .shape-1 {
+        width: 300px;
+        height: 300px;
+    }
+    .shape-2 {
+        width: 400px;
+        height: 400px;
+    }
+    .shape-3 {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 780px) {
+    html {
+        scroll-padding-top: 70px;
+    }
+    :root {
+        --section-padding: 60px 0;
+        --blur-intensity: 8px;
+    }
+    h1 {
+        font-size: 2.4rem;
+    }
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    h3 {
+        font-size: 1.3rem;
+    }
+    .hero .subtitle {
+        font-size: 1.1rem;
+    }
+
+    /* --- Mobile Nav Activation --- */
+    .main-nav .nav-links {
+        display: none;
+    } /* Hide desktop nav */
+    .mobile-nav-toggle {
+        display: block;
+    } /* Show hamburger */
+    /* --- End Mobile Nav Activation --- */
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .site-footer-bottom .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .site-footer-bottom ul {
+        margin-top: 15px;
+        padding-left: 0;
+        justify-content: center;
+    }
+    .site-footer-bottom li {
+        margin: 0 12px;
+    }
+    .shape {
+        display: none;
+    } /* Hide complex shapes on small mobile maybe */
+
+    /* Adjust padding for content card on mobile */
+    .content-card {
+        padding: 25px 20px;
+    }
+    .content-card .content-heading {
+        font-size: 1.3rem;
+    }
+}

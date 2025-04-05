@@ -1,75 +1,91 @@
+// script.js
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- Mobile Navigation Toggle ---
     const navToggle = document.querySelector('.mobile-nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const body = document.body; // Get the body element
+    const mobileMenuOverlay = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    const mobileMenuLinks = mobileMenuOverlay ? mobileMenuOverlay.querySelectorAll('a') : []; // Get links inside mobile menu
+    const body = document.body;
 
-    if (navToggle && navLinks) {
+    // Function to open the menu
+    function openMenu() {
+        if (mobileMenuOverlay && navToggle) {
+            mobileMenuOverlay.classList.add('active');
+            mobileMenuOverlay.setAttribute('aria-hidden', 'false');
+            navToggle.classList.add('active'); // Optional: For 'X' icon state
+            navToggle.setAttribute('aria-expanded', 'true');
+            body.classList.add('no-scroll'); // Prevent background scrolling
+        }
+    }
+
+    // Function to close the menu
+    function closeMenu() {
+        if (mobileMenuOverlay && navToggle) {
+            mobileMenuOverlay.classList.remove('active');
+            mobileMenuOverlay.setAttribute('aria-hidden', 'true');
+            navToggle.classList.remove('active'); // Optional: For 'X' icon state
+            navToggle.setAttribute('aria-expanded', 'false');
+            body.classList.remove('no-scroll'); // Allow scrolling again
+        }
+    }
+
+    // Event listener for the hamburger toggle button
+    if (navToggle) {
         navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            navToggle.classList.toggle('active'); // Toggle active class on burger icon itself
-            // Optional: Prevent body scroll when mobile menu is open
-            body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-        });
-
-        // Close menu when a link is clicked
-        navLinks.querySelectorAll('a').forEach((link) => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    navToggle.classList.remove('active');
-                    body.style.overflow = ''; // Restore scroll
-                }
-            });
-        });
-
-        // Close menu if clicking outside of it (optional)
-        document.addEventListener('click', (event) => {
-            const isClickInsideNav = navLinks.contains(event.target);
-            const isClickOnToggle = navToggle.contains(event.target);
-
-            if (!isClickInsideNav && !isClickOnToggle && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                navToggle.classList.remove('active');
-                body.style.overflow = ''; // Restore scroll
+            if (mobileMenuOverlay && mobileMenuOverlay.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
             }
         });
     }
 
-    // --- Simple Scroll Animation ---
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    // Event listener for the close button inside the mobile menu
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', closeMenu);
+    }
 
+    // Event listener for links inside the mobile menu (to close on navigation)
+    mobileMenuLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            // Close menu only if it's currently active
+            if (mobileMenuOverlay && mobileMenuOverlay.classList.contains('active')) {
+                closeMenu();
+            }
+            // Allow default link behavior to proceed
+        });
+    });
+
+    //Optional: Close menu if clicking outside of it (more complex)
+    document.addEventListener('click', (event) => {
+        if (
+            mobileMenuOverlay &&
+            mobileMenuOverlay.classList.contains('active') &&
+            !mobileMenuOverlay.contains(event.target) &&
+            !navToggle.contains(event.target)
+        ) {
+            closeMenu();
+        }
+    });
+
+    // --- Simple Scroll Animation (Keep existing code if you have it) ---
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
     if (animatedElements.length > 0) {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // observer.unobserve(entry.target); // Keep observing if you want re-animation on scroll up/down
-                    } else {
-                        // Optional: Remove class if you want elements to fade out when scrolling away
-                        // entry.target.classList.remove('is-visible');
                     }
+                    // Optional: Remove class if you want animation to reverse when scrolling up
+                    // else { entry.target.classList.remove('is-visible'); }
                 });
             },
-            {
-                threshold: 0.1, // Adjust threshold as needed (0.1 means 10% visible)
-            },
+            { threshold: 0.1 },
         );
-
         animatedElements.forEach((el) => {
             observer.observe(el);
-        });
-    }
-
-    // --- Optional: Parallax effect for background shapes (more complex) ---
-    // This is a basic example; libraries like rellax.js can simplify this
-    const backgroundShapes = document.querySelector('.background-shapes');
-    if (backgroundShapes) {
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            // Adjust the '0.1' factor for more/less parallax effect
-            backgroundShapes.style.transform = `translateY(${scrollY * 0.5}px)`;
         });
     }
 });
