@@ -8,7 +8,7 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize({
     storage: 'notes.db', // SQLite database file
     dialect: 'sqlite', // Setting the dialect to SQLite
-    logging: console.log, // Log SQL queries to the console
+    logging: process.env.NODE_ENV === 'production' ? false : console.log, // Log SQL queries to the console
 });
 
 // Export the sequelize instance for use in other parts of the application
