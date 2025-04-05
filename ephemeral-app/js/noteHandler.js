@@ -18,9 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const note = await decrypt(cipherText, password, iv);
 
             // If successful, update the note element with the decrypted note.
-            document.getElementById('note-placeholder').classList.add('hidden'); // Hide the encrypted message.
-            document.getElementById('note-content').innerText = note;
-            document.getElementById('note-content').classList.remove('hidden'); // Show the decrypted note.
+            document.getElementById('note').innerText = note;
             // Hide the modal background and modal since decryption was successful.
             document.getElementById('modal-background').classList.add('hidden');
             document.getElementById('modal').classList.add('hidden');

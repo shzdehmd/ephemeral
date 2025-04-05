@@ -1,0 +1,81 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg"
+  style="background-color:#0f0f1a;">
+
+  <title>Ephemeral - Secure Private Note Sharing</title>
+  <desc>Ephemeral allows you to create and share end-to-end encrypted, self-destructing notes
+    securely.</desc>
+
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f1a;" />
+      <stop offset="100%" style="stop-color:#141424;" />
+    </linearGradient>
+
+    <!-- Accent Gradient for Title Text -->
+    <linearGradient id="accentGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" style="stop-color:#8A2BE2;" /> <!-- Adjusted Purple -->
+      <stop offset="100%" style="stop-color:#007bff;" /> <!-- Vibrant Blue -->
+    </linearGradient>
+
+    <!-- Subtle Gradient for Background Shapes -->
+    <radialGradient id="shapeHint" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:rgba(106, 13, 173, 0.1); stop-opacity: 0.8" />
+      <stop offset="60%" style="stop-color:rgba(0, 123, 255, 0.08); stop-opacity: 0.5" />
+      <stop offset="100%" style="stop-color:rgba(15, 15, 26, 0); stop-opacity: 0" />
+    </radialGradient>
+
+    <!-- Optional: Subtle Glow Filter for Icon -->
+    <filter id="iconGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+  </defs>
+
+  <!-- Background Rect -->
+  <rect width="100%" height="100%" fill="url(#bgGradient)" />
+
+  <!-- Subtle Background Shape Hints (Adjusted) -->
+  <ellipse cx="150" cy="500" rx="450" ry="380" fill="url(#shapeHint)" opacity="0.5"
+    style="filter: blur(60px);" />
+  <ellipse cx="1050" cy="150" rx="400" ry="350" fill="url(#shapeHint)" opacity="0.4"
+    style="filter: blur(70px); transform: rotate(-20deg) scale(1.1); transform-origin: center;" />
+
+
+  <!-- Centered Content Group -->
+  <g text-anchor="middle"> <!-- Center all text elements horizontally -->
+
+    <!-- Lock Icon (Larger, Above Title) -->
+    <g transform="translate(600, 180) scale(4.5)"> <!-- Centered horizontally, positioned above
+      title, scaled up -->
+      <!-- Optional: Apply glow filter -->
+      <!-- <g filter="url(#iconGlow)"> -->
+      <path
+        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
+        fill="#a0a0b5" opacity="0.8" />
+      <!-- fill="url(#accentGradient)" --> <!-- Alternative: Use accent gradient for icon -->
+      <!-- </g> -->
+    </g>
+
+    <!-- App Title -->
+    <text x="600" y="380"
+      font-family="Inter, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif"
+      font-size="110" font-weight="700" fill="url(#accentGradient)"
+      letter-spacing="-2">
+      ephemeral
+    </text>
+
+    <!-- Tagline -->
+    <text x="600" y="465"
+      font-family="Inter, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif"
+      font-size="36" font-weight="400" fill="#a0a0b5">
+      Secure Private Note Sharing
+    </text>
+
+  </g>
+
+</svg>

@@ -3,63 +3,112 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Ephemeral - Private Note Sharing</title>
+        <title>Ephemeral - View Note</title>
+
+        <!-- Meta Tags -->
+        <meta name="description" content="View a secure, private note shared via Ephemeral." />
+        <meta name="robots" content="noindex, nofollow" />
+
+        <!-- OG Tags (Generic or update as needed) -->
+        <meta property="og:title" content="Ephemeral - Secure Note" />
+        <meta property="og:description" content="Viewing a private note." />
+        <meta property="og:image" content="/images/ephemeral_note_preview.png" />
+        <meta property="og:url" content="{{ url }}/view/{{ slug }}" />
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="/css/reset.css" />
         <link rel="stylesheet" href="/css/styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+        <!-- Add Favicon links here -->
     </head>
-    <body>
-        <!-- Main Page Wrapper -->
-        <div id="wrapper">
-            <!-- Header Section -->
-            <header>
-                <h1>
-                    <a href="/">Ephemeral</a>
-                </h1>
-                <p>Private note-sharing service</p>
-            </header>
-            <!-- End of Header Section -->
+    <body class="dark-theme">
+        <!-- Abstract Background Elements -->
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
 
-            <!-- Main Content Section -->
-            <main class="note-main">
+        <!-- Page Header -->
+        <header class="app-header">
+            <h1>
+                <a href="/">Ephemeral</a>
+            </h1>
+            <p>Secure Note View</p>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="app-main glass-card note-view-main">
+            {# Added note-view-main for specific styling if needed #}
+            <!--  -->
+            {# Display View Count if available #}
+            <!--  -->
+            {% if views %}
+            <p class="views">Views: {{ views }}</p>
+            {% endif %} {# --- Note Content Area --- #}
+            <div class="note-content-area">
                 {% if note.protected %}
-                <p id="note" class="note">Note is encrypted.</p>
+                <!--  -->
+                {# Placeholder shown before unlocking #}
+                <div id="note-placeholder" class="note-placeholder">
+                    <span class="lock-icon">🔒</span>
+                    <p>This note is encrypted.</p>
+                    {# Button to trigger modal might be better UX than auto-showing modal, but sticking to original
+                    logic for now #}
+                    <p class="subtle-info">Please enter the password below to decrypt.</p>
+                </div>
+                {# Area where decrypted note will appear (initially hidden) #}
+                <pre id="note-content" class="note hidden"></pre>
                 {% else %}
-                <p id="note" class="note">{{ note.message }}</p>
+                <!--  -->
+                {# Directly display unprotected note #}
+                <pre id="note-content" class="note">{{ note.message }}</pre>
                 {% endif %}
-                {% if views %}
-                <p class="views">Views: {{ views }} 🎉</p>
-                {% endif %}
-            </main>
-            <!-- End of Main Content Section -->
+            </div>
+        </main>
+        <!-- End of Main Content Section -->
 
-            <!-- Footer Section -->
-            <footer>
-                <p>
-                    Copyright (c) 2025 -
-                    <a href="https://shahzad.dev">ahmad shahzad</a>
-                </p>
-            </footer>
-            <!-- End of Footer Section -->
+        <!-- Page Footer -->
+        <footer class="app-footer">
+            <p>
+                Copyright (c) 2025 -
+                <a href="https://shahzad.dev" target="_blank" rel="noopener noreferrer">ahmad shahzad</a>
+            </p>
+        </footer>
+
+        {# --- Password Modal Section (Only if note is protected) --- #} {% if note.protected %}
+        <div id="modal-background" class="modal-backdrop"></div>
+        {# Modal always present in DOM if protected, shown by JS/CSS logic #}
+
+        <div id="modal" class="modal-content glass-effect password-modal">
+            <h3>Unlock Encrypted Note</h3>
+            <p class="modal-instruction">Enter the password to decrypt and view the note:</p>
+
+            {# Use a form for better semantics and handling Enter key #}
+            <form id="unlock-form" action="#" method="dialog">
+                {# method="dialog" can help with some browser modal handling #}
+                <div class="form-group">
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Password" required />
+                </div>
+
+                {# Keep hidden fields necessary for decryption #}
+                <input type="hidden" name="iv" id="iv" value="{{ note.iv }}" />
+                <input type="hidden" name="message" id="message" value="{{ note.message }}" />
+
+                <div class="modal-actions">
+                    <button type="submit" id="unlock" class="cta-button primary">Unlock Note</button>
+                    <button type="button" id="modal-close" class="cta-button secondary close-btn">Cancel</button> {#
+                    Changed to Cancel, type="button" #}
+                </div>
+            </form>
         </div>
-        <!-- End of Main Page Wrapper -->
 
-        {% if note.protected %}
-        <!-- Modal Background Overlay -->
-        <div id="modal-background" {% if note.protected === false %} class="hidden" {% endif %}></div>
-        <!-- Password Modal for Unlocking Note -->
-        <div id="modal" {% if note.protected === false %} class="hidden" {% endif %}>
-            <h3>🥷 Password 🥷</h3>
-            <input type="password" name="password" id="password" placeholder="Password" />
-            <input type="hidden" name="iv" id="iv" value="{{ note.iv }}">
-            <input type="hidden" name="message" id="message" value="{{ note.message }}">
-            <button id="unlock">Unlock</button>
-            <button id="modal-close" type="reset">Close</button>
-        </div>
-        <!-- End of Password Modal -->
-
-        <!-- External Scripts -->
+        <!-- Include decryption scripts only if needed -->
         <script src="/js/crypto.js"></script>
         <script src="/js/noteHandler.js"></script>
-        <!-- End of External Scripts -->
-        {% endif %}
+        {% endif %} {# --- End of Password Modal Section --- #}
     </body>
 </html>

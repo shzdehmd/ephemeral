@@ -299,6 +299,7 @@ input[type='datetime-local']::-webkit-calendar-picker-indicator {
 input[type='radio'],
 input[type='checkbox'] {
     margin-right: 10px;
+    accent-color: var(--primary-accent); /* Modern way to color */
     width: 1em;
     height: 1em;
     cursor: pointer;
@@ -620,168 +621,20 @@ input[type='radio'] {
     opacity: 0.4; /* Fade the check/dot */
 }
 
-/* Specific styles for expiry date and password fields */
 #expiry,
 #passwords {
     margin-top: 15px;
 }
 
-/* --- Note View Specific Styles --- */
-
-.note-view-main {
-    /* Potentially add specific padding or min-height if needed */
-    padding: 30px 35px;
+/* Remove default accent-color rule */
+/* Find this rule in your existing CSS and remove it: */
+/*
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: var(--primary-accent); /* Modern way to color */ /* <-- REMOVE THIS LINE */
+/* width: 1em;
+    height: 1em;
+    cursor: pointer;
 }
-
-.note-content-area {
-    margin-top: 15px; /* Add some space below view count */
-}
-
-.views {
-    /* Style for view count */
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-muted-color);
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--glass-border);
-}
-
-/* Placeholder for encrypted note */
-.note-placeholder {
-    text-align: center;
-    padding: 40px 20px;
-    border: 2px dashed var(--input-border); /* Dashed border to indicate placeholder */
-    border-radius: var(--border-radius);
-    background-color: rgba(0, 0, 0, 0.1); /* Slightly different bg */
-}
-.note-placeholder .lock-icon {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 15px;
-    opacity: 0.7;
-}
-.note-placeholder p {
-    font-size: 1.1rem;
-    color: var(--text-color);
-    margin-bottom: 5px;
-}
-.note-placeholder .subtle-info {
-    font-size: 0.9rem;
-    color: var(--text-muted-color);
-    margin-bottom: 0;
-}
-
-/* Styling for the actual note content (using <pre>) */
-pre.note {
-    display: block; /* Ensure it behaves like a block */
-    white-space: pre-wrap; /* Wrap long lines */
-    word-wrap: break-word; /* Break words if necessary */
-    padding: 20px;
-    background-color: var(--input-bg);
-    border: 1px solid var(--input-border);
-    border-radius: calc(var(--border-radius) - 4px);
-    color: var(--text-color);
-    font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace; /* Monospace font */
-    font-size: 0.95rem;
-    line-height: 1.6;
-    max-height: 60vh; /* Limit height and allow scrolling if needed */
-    overflow-y: auto; /* Add scrollbar if content overflows */
-}
-
-/* Password Modal Adjustments */
-.password-modal h3 {
-    margin-bottom: 10px; /* Less space below title */
-}
-.password-modal .modal-instruction {
-    margin-bottom: 25px; /* More space before input */
-    font-size: 0.9rem;
-}
-.password-modal #unlock-form .form-group {
-    margin-bottom: 20px; /* Space below password input */
-}
-.password-modal .modal-actions {
-    display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 10px; /* Space between buttons */
-    margin-top: 25px; /* Space above buttons */
-}
-.password-modal .modal-actions .cta-button {
-    width: 100%; /* Make buttons full width */
-}
-
-/* Ensure hidden class works */
-.hidden {
-    display: none !important;
-}
-
-/* --- 404 Error Page Specific Styles --- */
-
-.error-page .app-main {
-    text-align: center; /* Center content within the card */
-    padding: 50px 40px; /* Adjust padding */
-    max-width: 600px; /* Slightly wider card for error message */
-}
-
-.error-content .error-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    line-height: 1;
-    opacity: 0.7;
-}
-
-.error-content .error-code {
-    font-size: 6rem;
-    font-weight: 700;
-    color: var(--primary-accent); /* Use accent color */
-    line-height: 1;
-    margin-bottom: 10px;
-    letter-spacing: -2px;
-    background: var(--accent-gradient); /* Apply gradient text */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.error-content .error-title {
-    font-size: 1.8rem;
-    font-weight: 500;
-    color: var(--heading-color);
-    margin-bottom: 25px;
-}
-
-.error-content .error-message {
-    font-size: 1rem;
-    color: var(--text-muted-color);
-    line-height: 1.7;
-    margin-bottom: 35px;
-    max-width: 450px; /* Limit message width */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.error-content .back-home-button {
-    /* Button already styled by .cta-button.primary */
-    /* Adjust width if needed, default is 100% for primary */
-    max-width: 300px; /* Limit button width */
-    margin: 0 auto; /* Center the button */
-    display: inline-flex; /* Override potential full width block */
-    width: auto; /* Reset width */
-    padding-left: 25px; /* Adjust padding for left arrow */
-    padding-right: 25px;
-}
-
-.error-content .back-home-button .left-arrow {
-    margin-right: 8px; /* Space between arrow and text */
-    margin-left: 0;
-    display: inline-block;
-    transition: transform 0.2s ease-out;
-}
-
-.error-content .back-home-button:hover .left-arrow {
-    transform: translateX(-4px); /* Arrow moves left on hover */
-}
-
-/* Ensure footer spacing */
-.error-page .app-footer {
-    margin-top: 40px;
-}
+*/
+/* --- End of Custom Radio/Checkbox Styles --- */

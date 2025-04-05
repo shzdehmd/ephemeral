@@ -13,6 +13,7 @@ const app = express();
 // Initialize constants from environment variables or with default values.
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
+const URL = process.env.URL || `http://${HOST}:${PORT}`;
 
 // Import the middlewares.
 const { error404 } = require('./utils/middlewares');
@@ -38,7 +39,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Render the homepage for the application.
-app.get('/', (req, res) => res.render('index.html'));
+app.get('/', (req, res) => res.render('index.html', { url: URL }));
 
 // Get the note data from form post submit.
 app.post('/create', async (req, res) => {
@@ -81,7 +82,7 @@ app.post('/create', async (req, res) => {
     const createdNote = await note.save();
 
     // Respond with a success status and the generated note slug.
-    return res.status(201).json({ success: true, slug: createdNote.slug });
+    return res.status(201).json({ success: true, slug: createdNote.slug, url: URL });
 });
 
 // Defines a route for viewing a note based on its slug.
@@ -134,7 +135,7 @@ app.get('/view/:slug', async (req, res) => {
     await note.save();
 
     // Render the note using the 'note.html' template.
-    res.render('note.html', { note, views: note.views });
+    res.render('note.html', { note, views: note.views, slug, url: URL });
 });
 
 // Use error404 as the final route handler if no other route satisfies the request.
@@ -142,4 +143,4 @@ app.use(error404);
 
 // Start the application on the prescribed port and log the address
 // to the console for web access.
-app.listen(PORT, () => console.log(`Ephemeral is running on: http://${HOST}:${PORT}`));
+app.listen(PORT, () => console.log(`Ephemeral is running on: ${URL}`));
